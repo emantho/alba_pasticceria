@@ -1,0 +1,6 @@
+/* Styles for abm_clients template */
+
+main {
+    flex: 1;
+    flex-direction: column;
+}

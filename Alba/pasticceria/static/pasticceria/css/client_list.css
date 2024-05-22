@@ -1,0 +1,6 @@
+/* Styles for client_list template */
+
+main {
+    flex: 1;
+    flex-direction: column;
+}

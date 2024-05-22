@@ -1,6 +1,10 @@
 {% extends "pasticceria/base.html" %} 
+{% load static %}
 {% block tittle %}Name List{%endblock tittle%}
-{% block css %}{% endblock css %} 
+{% block css %}
+<link rel="stylesheet" href="{% static "pasticceria/css/abm_clients.css" %}">
+{% endblock css %} 
+
 
 {% block main %}
 <h2>Listado de nombres</h2>

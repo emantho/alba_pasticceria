@@ -1,0 +1,8 @@
+/* Styles for index template */
+h1 {
+    background-color: bisque;
+    padding: 25px;
+    color: white;
+
+    border-radius: 5px;
+}

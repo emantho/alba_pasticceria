@@ -1,16 +1,15 @@
 {% extends "pasticceria/base.html" %} 
-
 {% load static %}
 {% block tittle %}ABM Users{% endblock tittle%} 
 {% block css %}
-  <link rel="stylesheet" href="{% static "alba_pasticceria/css/abm_users.css" %}">
+<link rel="stylesheet" href="{% static "pasticceria/css/abm_clients.css" %}">
 {% endblock css %} 
 
 <!-- Main Content -->
 {% block main %}
 
     <h2>ABM Users</h2>
-    <form method="POST" action=" {% url "abm_clients" %} ">
+    <form class="centered" method="POST" action=" {% url "abm_clients" %} ">
 
         {% csrf_token %}
         {{ abm_clients_form }}

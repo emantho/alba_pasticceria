@@ -33,17 +33,21 @@ def abm_clients(request):
     
     context = {}
     
+    # Empty form request
     if request == 'GET':
-        context['abm_users_form'] = forms.AbmClientsForm()
+        context['abm_clients_form'] = forms.AbmClientsForm()
     
     else: # Asummig is a POST
-        context['abm_users_form'] = forms.AbmClientsForm(request.POST)
+        form = forms.AbmClientsForm(request.POST)
+        context['abm_clients_form'] = form
     
         # Form validation
-        # If correct, inform with message and redirect 
-
+        if form.is_valid():
+        # If correct, inform with message and redirect
+            print(request.POST)
+            return redirect('index')
+            
         # IF NO correct 
         # Saty in form but showing an error
-        # return redirect('index')
         
     return render(request, 'pasticceria/abm_clients.html', context)
