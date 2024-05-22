@@ -1,0 +1,25 @@
+{% extends "pasticceria/base.html" %} 
+{% block tittle %}Name List{%endblock tittle%}
+{% block css %}{% endblock css %} 
+
+{% block main %}
+<h2>Listado de nombres</h2>
+
+{% if payment_status %} NO DEBE DINERO {% else %} DEBE DINERO {%endif%}
+
+<section>
+  {% for name in names %}
+  <article>
+    <p>{{ name | upper }}</p>
+  </article>
+
+  {% empty %}
+  <article>
+    <p>{{ name }}</p>
+  </article>
+
+  {% endfor %}
+</section>
+
+<a href=" {% url 'index' %}">Volver</a>
+{% endblock main %}
