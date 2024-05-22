@@ -1,0 +1,21 @@
+{% extends "pasticceria/base.html" %} 
+
+{% load static %}
+{% block tittle %}{% endblock tittle%} 
+{% block css %}
+  <link rel="stylesheet" href="{% static "pasticceria/css/index.css" %}">
+{% endblock css %} 
+
+{% block main %}
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- Add your main content here -->
+      <h1>Welcome {{ userName }} to ALBA Pasticceria</h1>
+      <p>This is where you can showcase your products and information.</p>
+      <img src="{% static "pasticceria/media/image/alba_logo.jpeg" %}" alt="Logo de empresa" width="200" height="200">
+    </div>
+  </div>
+</div>
+{% endblock main %}
