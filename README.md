@@ -1,2 +1,2 @@
 # alba_pasticceria
-Personal projetc for a bakery and pastry
+Personal project for a bakery and pastry as a part of CaC Python Advance
