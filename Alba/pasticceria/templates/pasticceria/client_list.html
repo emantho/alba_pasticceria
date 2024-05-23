@@ -1,32 +1,35 @@
-{% extends "pasticceria/base.html" %} 
+{% extends "pasticceria/base.html" %}
 {% load static %}
-{% block tittle %}Name List{%endblock tittle%}
+{% block tittle %}Lista de Clientes{%endblock tittle%}
 {% block css %}
-<link rel="stylesheet" href="{% static "pasticceria/css/abm_clients.css" %}">
-{% endblock css %} 
+<link rel="stylesheet" href="{% static "pasticceria/css/client_list.css" %}">
+{% endblock css %}
 
 
 {% block main %}
-<h2>Listado de clientes</h2>
+<div class="main-div">
+  <h2>Listado de clientes</h2>
+  <br>
 
-{% if payment_status %} No presentan deudas {% else %} Presentan deuda {%endif%}
+  {% if payment_status %} No presentan deudas {% else %} Presentan deuda {%endif%}
 
-<br>
-<br>
+  <br>
+  <br>
 
-<section>
-  {% for name in names %}
-  <article>
-    <p>{{ name | upper }}</p>
-  </article>
+  <section>
+    {% for name in names %}
+    <article>
+      <p>{{ name | upper }}</p>
+    </article>
 
-  {% empty %}
-  <article>
-    <p>{{ name }}</p>
-  </article>
+    {% empty %}
+    <article>
+      <p>{{ name }}</p>
+    </article>
 
-  {% endfor %}
-</section>
+    {% endfor %}
+  </section>
 
-<a href=" {% url 'index' %}">Volver</a>
+  <a href=" {% url 'index' %}">Volver</a>
+</div>
 {% endblock main %}

@@ -1,6 +1,52 @@
 /* Styles for client_list template */
 
-main {
-    flex: 1;
-    flex-direction: column;
+.name-list-container {
+    width: 60%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
 }
+
+.name-list-container h2 {
+    text-align: center;
+    color: #333;
+}
+
+.payment-status {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.name-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.name-item {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #5cb85c;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.back-link:hover {
+    background-color: #4cae4c; 
+}
+
