@@ -4,8 +4,8 @@ from django.core.exceptions import ValidationError
 
 
 class AbmClientsForm(forms.Form):
-    userName = forms.CharField(label='First Name', required=True, widget=forms.TextInput(attrs={'class':'blue_field'}))
-    lastName = forms.CharField(label='Last Name', required=True)
+    userName = forms.CharField(label='Nombre', required=True, widget=forms.TextInput(attrs={'class':'blue_field'}))
+    lastName = forms.CharField(label='Apellido', required=True)
     dni = forms.IntegerField(label="DNI", required=True)
     email = forms.EmailField(label="Email", required=True)
     

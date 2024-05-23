@@ -8,7 +8,8 @@
 <!-- Main Content -->
 {% block main %}
 
-    <h2>ABM Users</h2>
+    <div class="main_div">
+    <h2>Alta de clientes</h2>
     <form class="centered" method="POST" action=" {% url "abm_clients" %} ">
 
         {% csrf_token %}
@@ -16,5 +17,6 @@
 
         <input type="submit" value="Enviar">
     </form>
+    </div>
 
 {% endblock main %}

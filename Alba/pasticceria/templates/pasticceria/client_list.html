@@ -7,9 +7,12 @@
 
 
 {% block main %}
-<h2>Listado de nombres</h2>
+<h2>Listado de clientes</h2>
 
-{% if payment_status %} NO DEBE DINERO {% else %} DEBE DINERO {%endif%}
+{% if payment_status %} No presentan deudas {% else %} Presentan deuda {%endif%}
+
+<br>
+<br>
 
 <section>
   {% for name in names %}

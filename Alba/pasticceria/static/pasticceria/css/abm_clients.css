@@ -1,10 +1,62 @@
 /* Styles for abm_clients template */
 
-main {
-    flex: 1;
-    flex-direction: column;
+.main_div {
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
 }
 
-.blue_field {
-    background-color: blue;
+.main_div h2 {
+    text-align: center;
+    color: #333;
 }
+
+form.centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form.centered p {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+form.centered label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+form.centered input[type="text"],
+form.centered input[type="email"],
+form.centered input[type="password"],
+form.centered select,
+form.centered textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+form.centered input[type="submit"].submit-button {
+    width: auto;
+    padding: 10px 20px;
+    background-color: #5cb85c;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+form.centered input[type="submit"].submit-button:hover {
+    background-color: #4cae4c;
+}
+
+
