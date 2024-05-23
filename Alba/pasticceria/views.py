@@ -8,8 +8,8 @@ from django.contrib import messages
 # Create your views here.
 def index(request):
     my_context_var = {
-        'userName':'Paola',
-        'dateTime': datetime.datetime.now()
+        'userName':'Visitante',
+        # 'dateTime': datetime.datetime.now()
     }
     
     return render(request, 'pasticceria/index.html', my_context_var)
