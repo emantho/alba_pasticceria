@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from . import forms
 import datetime
+from django.contrib import messages
 
 # Create your views here.
 def index(request):
@@ -44,7 +45,7 @@ def abm_clients(request):
         # Form validation
         if form.is_valid():
         # If correct, inform with message and redirect
-            print(request.POST)
+            messages.success(request, 'Client created successfully')
             return redirect('index')
             
         # IF NO correct 

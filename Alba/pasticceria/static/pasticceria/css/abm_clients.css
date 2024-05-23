@@ -4,3 +4,7 @@ main {
     flex: 1;
     flex-direction: column;
 }
+
+.blue_field {
+    background-color: blue;
+}
