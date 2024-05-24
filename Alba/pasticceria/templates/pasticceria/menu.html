@@ -1,0 +1,10 @@
+{% extends "pasticceria/base.html" %} 
+{% load static %}
+{% block tittle %}{% endblock tittle%} 
+{% block css %}
+  <link rel="stylesheet" href="{% static "pasticceria/css/menu.css" %}">
+{% endblock css %} 
+
+{% block main %}
+{{ mensaje }}
+{% endblock main %}

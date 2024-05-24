@@ -16,7 +16,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href=" {% url "index" %}">
-                <img src="{% static "pasticceria/media/images/alba_logo.jpeg" %}" alt="Logo" width="100" height="60">
+                <img src="{% static "pasticceria/media/images/alba_logo.jpeg" %}" alt="Logo" width="100" height="100">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,20 +24,23 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href=" {% url 'index' %} ">Home</a>
+                    {% comment %} <li class="nav-item active">
+                        <a class="nav-link" href=" {% url 'index' %} ">Principal</a>
+                    </li> {% endcomment %}
+                    <li class="nav-item">
+                        <a class="nav-link" href=" {% url 'menu' %} ">Menú</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href=" {% url 'client_list' %} ">Clientes</a>
+                        <a class="nav-link" href=" {% url 'cafe' %} ">Cafés</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href=" {% url 'abm_clients' %} ">ABM Clientes</a>
+                        <a class="nav-link" href=" {% url 'abm_clients' %} ">Fidelidad</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contacto</a>
+                        <a class="nav-link" href=" {% url 'carrito' %} ">Carrito</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Login</a>
+                        <a class="nav-link" href=" {% url 'admin' %} ">Admin</a>
                     </li>
                 </ul>
             </div>
@@ -50,8 +53,6 @@
                 {% endfor %}
             </ul>
         {% endif %}
-
-
     </header>
 
     <!-- Main -->
@@ -67,7 +68,7 @@
                 <div class="col-md-6">
                     <!-- Add footer content here -->
                     <h5>Sobre nuestro negocio</h5>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                 </div>
                 <div class="col-md-6">
                     <!-- Add additional footer content here -->
