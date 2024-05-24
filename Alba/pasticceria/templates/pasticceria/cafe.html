@@ -2,9 +2,34 @@
 {% load static %}
 {% block tittle %}{% endblock tittle%} 
 {% block css %}
-  <link rel="stylesheet" href="{% static "pasticceria/css/cafe.css" %}">
+<link rel="stylesheet" href="{% static "pasticceria/css/cafe.css" %}">
 {% endblock css %} 
 
 {% block main %}
-{{ mensaje }}
+
+<div class="cafe">
+  <h1>ALBA Pasticceria</h1>
+  <p class="established">Est. 2024</p>
+  <hr />
+  <section>
+    <div class="cafeteria_titulo">
+      <h2>Cafetería</h2>
+      <hr>
+      <img src="https://cdn.freecodecamp.org/curriculum/css-cafe/coffee.jpg" alt="pie icon" />
+    </div>
+
+    {% for cafe in cafes %}
+      {% for key, value in cafe.items %}
+    <section>
+      <article class="item">
+        <p class="flavor">{{ key }}</p>
+        <p class="price">$ {{ value }}</p>
+
+      </article>
+    </section>
+      {% endfor %}
+    {% endfor %}
+
+</div>
+
 {% endblock main %}

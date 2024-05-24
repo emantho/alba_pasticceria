@@ -1,10 +1,35 @@
-{% extends "pasticceria/base.html" %} 
+{% extends "pasticceria/base.html" %}
 {% load static %}
-{% block tittle %}{% endblock tittle%} 
+{% block tittle %}{% endblock tittle %}
 {% block css %}
-  <link rel="stylesheet" href="{% static "pasticceria/css/menu.css" %}">
-{% endblock css %} 
+<link rel="stylesheet" href="{% static "pasticceria/css/menu.css" %}">
+{% endblock css %}
 
 {% block main %}
-{{ mensaje }}
+
+<div class="menu">
+  <h1>ALBA Pasticceria</h1>
+  <p class="established">Est. 2024</p>
+  <hr />
+  <section>
+    <div class="pasteleria_titulo">
+      <h2>Pasteleria</h2>
+      <hr>
+      <img src="https://cdn.freecodecamp.org/curriculum/css-cafe/pie.jpg" alt="pie icon" />
+    </div>
+
+    {% for pastel in pasteles %}
+      {% for key, value in pastel.items %}
+    <section>
+      <article class="item">
+        <p class="flavor">{{ key }}</p>
+        <p class="price">$ {{ value }}</p>
+
+      </article>
+    </section>
+      {% endfor %}
+    {% endfor %}
+
+</div>
+
 {% endblock main %}

@@ -52,18 +52,29 @@ def abm_clients(request):
     return render(request, "pasticceria/abm_clients.html", context)
 
 def menu(request):
-    my_context = {
-        "mensaje": "Vista para menu"
+    pasteleria = {
+        "pasteles": [
+            {"Donut":1.50},
+            {"Cherry Pie":2.75},
+            {"Cheesecake":3.00},
+            {"Cinnamon Roll":2.50},
+            ]
     }
 
-    return render(request, "pasticceria/menu.html", my_context)
+    return render(request, "pasticceria/menu.html", pasteleria)
 
 def cafe(request):
-    my_context = {
-        "mensaje": "Vista para cafe"
+    cafeteria = {
+        "cafes": [
+            {"French Vanilla":3.00},
+            {"Caramel Macchiato":3.75},
+            {"Pumpkin Spice":3.50},
+            {"Hazelnut":4.00},
+            {"Mocha":4.50}
+            ]
     }
 
-    return render(request, "pasticceria/cafe.html", my_context)
+    return render(request, "pasticceria/cafe.html", cafeteria)
 
 def carrito(request):
     my_context = {
