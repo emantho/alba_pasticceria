@@ -6,24 +6,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ALBA Pasticceria {% block tittle %}{% endblock tittle %}</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="{% static "pasticceria/css/base.css" %}">
     {% block css %}{% endblock css %}
 </head>
 
 <body>
     <!-- Header -->
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href=" {% url "index" %}">
-                <img src="{% static "pasticceria/media/images/alba_logo.jpeg" %}" alt="Logo" width="100" height="100">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+    <header class="header">
+        <nav class="navbar"> <!-- navbar-expand-lg navbar-light bg-light -->
+            <div class="logo-nombre">
+                <a class="navbar-brand" href=" {% url "index" %}">
+                    <img src="{% static "pasticceria/media/images/alba_logo.jpeg" %}" alt="Logo" width="100" height="100">
+                    <!-- <h2 class="navbar-text">ALBA Pasticceria</h2> -->
+                </a>
+            </div>
+            <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
+            </button> -->
+            <div class="navbarNav">
+                <ul class="navbarnav-list">
                     {% comment %} <li class="nav-item active">
                         <a class="nav-link" href=" {% url 'index' %} ">Principal</a>
                     </li> {% endcomment %}
@@ -56,35 +59,99 @@
     </header>
 
     <!-- Main -->
-    <main class="centered">
+    <main class="main">
+        <div class="main-div">
         {% block main %}{% endblock main %}
+        </div>
     </main>
 
 
     <!-- Footer -->
-    <footer class="bg-dark text-white py-4">
+    <footer class="footer-body">
+        <div id="footer-menu">
+            <div class="footer-menu">
+                <div class="footer-column">
+                    <div class="social-copy">
+                        <div class="logo-wrapper">
+                            <img class="footer-logo" src="{% static 'pasticceria/media/images/alba_logo.jpeg' %}" alt="footer-logo">
+                        </div>
+                        Siguenos:
+                        <div class="grid-sociales">
+                            <a href="http://www.facebook.com" target="_blank" rel="noopener noreferrer"><i
+                                    class="fa-brands fo-brands fa-facebook fa-xl"></i></a>
+                            <a href="http://www.instagram.com" target="_blank" rel="noopener noreferrer"><i
+                                    class="fa-brands fo-brands fa-instagram fa-xl"></i></a>
+                            <a href="http://www.x.com" target="_blank" rel="noopener noreferrer"><i
+                                    class="fa-brands fo-brands fa-x-twitter fa-xl"></i></a>
+                            <a href="http://www.threads.com" target="_blank" rel="noopener noreferrer"><i
+                                    class="fa-brands fo-brands fa-threads fa-xl"></i></a>
+                            <a href="http://www.tiktok.com" target="_blank" rel="noopener noreferrer"><i
+                                    class="fa-brands fo-brands fa-tiktok fa-xl"></i></a>
+                            <a href="http://www.whatsapp.com" target="_blank" rel="noopener noreferrer"><i
+                                    class="fa-brands fo-brands fa-whatsapp fa-xl"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <span class="footer-title">Secciones</span>
+                    <div class="footer-section">
+                        <a class="footer-link" rel="noopener noreferrer" target="_blank" href="#">No name</a>
+                        <a class="footer-link" rel="noopener noreferrer" target="_blank" href="#">No name</a>
+                        <a class="footer-link" rel="noopener noreferrer" target="_blank" href="#">No name</a>
+                        <a class="footer-link" rel="noopener noreferrer" target="_blank" href="#">No name</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <span class="footer-title">Contactanos</span>
+                    <div class="footer-section">
+                        <a class="footer-link" rel="noopener noreferrer" target="_blank" href="#">No name</a>
+                        <a class="footer-link" rel="noopener noreferrer" target="_blank" href="#">No name</a>
+                        <a class="footer-link" rel="noopener noreferrer" target="_blank" href="#">No name</a>
+                        <a class="footer-link" rel="noopener noreferrer" target="_blank" href="#">No name</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <span class="footer-title">Legales</span>
+                    <div class="footer-section">
+                        <a class="footer-link" rel="noopener noreferrer" target="_blank" href="#">No name</a>
+                        <a class="footer-link" rel="noopener noreferrer" target="_blank" href="#">No name</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <span class="copyright-text">
+                    Todos los derechos reservados&copy;
+                    <!--  -->
+                    2024
+                    <!--  -->
+                    ALBA Pasticceria
+                </span>
+            </div>
+        </div>
+    </footer>
+    <!-- <footer class="bg-dark text-white py-4">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6"> -->
                     <!-- Add footer content here -->
-                    <h5>Sobre nuestro negocio</h5>
+                    <!-- <h5>Sobre nuestro negocio</h5>
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6"> -->
                     <!-- Add additional footer content here -->
-                    <h5>Contactanos</h5>
+                    <!-- <h5>Contactanos</h5>
                     <p>Email: contacto@alba.pasticceria.com<br>Phone: 123-456-7890</p>
                     <p><a aria-label="Chat on WhatsApp" href="https://wa.me/1XXXXXXXXXX"> <img alt="Chat on WhatsApp" src=" {% static "pasticceria/media/images/wsapp.png" %} " /><a/></p>
                 </div>
             </div>
         </div>
-    </footer>
+    </footer> -->
 
     <!-- Bootstrap JS -->
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
 </body>
 
 </html>
