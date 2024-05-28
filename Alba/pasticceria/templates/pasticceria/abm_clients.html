@@ -9,15 +9,34 @@
 {% block main %}
 
     <div class="main_div">
-    <h2>Fidelidad de clientes</h2>
-
-    
-    <form class="centered" method="POST" action=" {% url "abm_clients" %} ">
-
+    <h2>Formulario de registro</h2>
+    <p>Por favor complete el formulario con la información requerida</p>
+   
+    <form class="form" method="POST" action=" {% url "abm_clients" %} ">
         {% csrf_token %}
-        {{ abm_clients_form }}
 
-        <input type="submit" value="Enviar">
+        <fieldset>
+            <legend>Información Personal</legend>
+            {{ form.userName.label_tag }} {{ form.userName }}
+            {{ form.lastName.label_tag }} {{ form.lastName }}
+            {{ form.dni.label_tag }} {{ form.dni }}
+            {{ form.email.label_tag }} {{ form.email }}
+            {{ form.password.label_tag }} {{ form.password }}
+        </fieldset>
+
+        <fieldset>
+            <legend>Tipo de cuenta</legend>
+            {{ form.Cuenta.label_tag }} {{ form.Cuenta }}
+        </fieldset>
+
+        <fieldset>
+            <legend>Información Adicional</legend>
+            {{ form.birthday.label_tag }} {{ form.birthday }}
+            {{ form.hearFromUs.label_tag }} {{ form.hearFromUs }}
+            {{ form.comment.label_tag }} {{ form.comment }}
+        </fieldset>
+
+        <button type="submit">Enviar</button>
     </form>
     </div>
 
