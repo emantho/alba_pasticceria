@@ -13,7 +13,7 @@ class AbmClientsForm(forms.Form):
         ('1','Cuenta Personal'),
         ('2','Cuenta Empresa'),  
     ] 
-    Cuenta= forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES)
+    Cuenta = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES)
     birthday = forms.DateField(label="Fecha de Nacimiento", widget=forms.SelectDateWidget)
     optionList = [(1,"Facebook"),(2,"Instagram"),(3,"Tiktok"),(4,"Snapchat"),(5,"TV"),(6,"Radio"),(7,"Otro")]
     hearFromUs = forms.CharField(label="¿Como nos conociste?", widget=forms.Select(choices=optionList))
