@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ALBA Pasticceria {% block tittle %}{% endblock tittle %}</title>
+    <script src="https://kit.fontawesome.com/a637af11bd.js" crossorigin="anonymous"></script>
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="{% static "pasticceria/css/base.css" %}">
     {% block css %}{% endblock css %}
@@ -73,7 +74,9 @@
                 <div class="footer-column">
                     <div class="social-copy">
                         <div class="logo-wrapper">
+                            <a class="navbar-brand" href=" {% url "index" %}">
                             <img class="footer-logo" src="{% static 'pasticceria/media/images/alba_logo.jpeg' %}" alt="footer-logo">
+                            </a>
                         </div>
                         Siguenos:
                         <div class="grid-sociales">
@@ -95,10 +98,10 @@
                 <div class="footer-column">
                     <span class="footer-title">Secciones</span>
                     <div class="footer-section">
-                        <a class="footer-link" rel="noopener noreferrer" target="_blank" href="#">No name</a>
-                        <a class="footer-link" rel="noopener noreferrer" target="_blank" href="#">No name</a>
-                        <a class="footer-link" rel="noopener noreferrer" target="_blank" href="#">No name</a>
-                        <a class="footer-link" rel="noopener noreferrer" target="_blank" href="#">No name</a>
+                        <a class="footer-link" rel="noopener noreferrer" href=" {% url 'menu' %} ">Menú</a>
+                        <a class="footer-link" rel="noopener noreferrer" href=" {% url 'cafe' %} ">Cafés</a>
+                        <a class="footer-link" rel="noopener noreferrer" href=" {% url 'abm_clients' %} ">Fidelidad</a>
+                        <a class="footer-link" rel="noopener noreferrer" href=" {% url 'carrito' %} ">Carrito</a>
                     </div>
                 </div>
                 <div class="footer-column">

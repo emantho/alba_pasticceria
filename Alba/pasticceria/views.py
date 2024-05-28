@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from . import forms
+from .forms import AbmClientsForm
 import datetime
 from django.contrib import messages
 
@@ -28,8 +29,6 @@ def client_list(request):
 
 def abm_clients(request):
 
-    # Controlling request flow
-
     context = {}
 
     # Empty form request
@@ -49,7 +48,7 @@ def abm_clients(request):
         # IF NO correct
         # Saty in form but showing an error
 
-    return render(request, "pasticceria/abm_clients.html", context)
+    return render(request, "pasticceria/abm_clients.html", {'form':form})
 
 def menu(request):
     pasteleria = {

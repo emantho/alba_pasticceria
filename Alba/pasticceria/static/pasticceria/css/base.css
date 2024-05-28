@@ -32,6 +32,8 @@
 }
 
 body {
+    display: flex;
+    flex-direction: column;
     background-color: var(--clr-headerBackground);
     min-height: 100svh;
     margin: 0
@@ -148,9 +150,10 @@ a:visited {
 /* FOOTER */
 /* pantallas menores a 577px */
 .footer-body {
+    box-sizing: content-box;
+    position:relative;
     color: var(--clr-white);
     padding: 26px 24px 0 24px;
-    position: relative;
     width: 100%;
 }
 
@@ -258,7 +261,7 @@ a:visited {
 @media only screen and (min-width: 992px) {
     .grid-sociales {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     }
 }
 
@@ -268,7 +271,7 @@ a:visited {
 }
 
 .fa-brands:hover {
-    color: var(--clr-gray-dark);
+    color: var(--clr-navButtonHover);
 }
 
 .footer-column {
@@ -325,7 +328,7 @@ a:visited {
 
 .copyright-text {
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 600;
     line-height: 16px;
     text-align: center;
 }
