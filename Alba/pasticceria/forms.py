@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 
 
 class AbmClientsForm(forms.Form):
-    firstName = forms.CharField(label='Nombre', required=True)#, widget=forms.TextInput(attrs={'class':'blue_field'})
+    firstName = forms.CharField(label='Nombre', required=True)
     lastName = forms.CharField(label='Apellido', required=True)
     dni = forms.IntegerField(label="DNI", required=True)
     telephone = forms.CharField(label="Telefono", required=True)
@@ -19,7 +19,6 @@ class AbmClientsForm(forms.Form):
     birthday = forms.DateField(label="Fecha de Nacimiento", widget=forms.SelectDateWidget)
     optionList = [(1,"Facebook"),(2,"Instagram"),(3,"Tiktok"),(4,"Snapchat"),(5,"TV"),(6,"Radio"),(7,"Otro")]
     hearFromUs = forms.CharField(label="¿Como nos conociste?", widget=forms.Select(choices=optionList))
-    # comment = forms.CharField(widget=forms.Textarea(attrs={"rows":"5"}))
     
     def clean_userName(self):
         if not self.cleaned_data["firstName"].isalpha():
@@ -47,7 +46,7 @@ class AbmClientsForm(forms.Form):
 
 
 class AbmProductosForm(forms.Form):
-    nombreProducto = forms.CharField(label='Nombre', required=True)#, widget=forms.TextInput(attrs={'class':'blue_field'})
+    nombreProducto = forms.CharField(label='Nombre', required=True)
     descripcion = forms.CharField(label='Descripción', required=True)
     
     listaCategorias = [(1,"Facebook"),(2,"Instagram"),(3,"Tiktok"),(4,"Snapchat"),(5,"TV"),(6,"Radio"),(7,"Otro")]
@@ -74,8 +73,5 @@ class AbmProductosForm(forms.Form):
         lastName = cleaned_data.get("lastName")
         if firstName == "Carlos" and lastName == "Lopez":
             raise ValidationError("User already exists")
-        
-        # if self.cleaned_data["dni"] < 1000000:
-        #     raise ValidationError("The DNI must have less than eight (8) digits")
         
         return self.cleaned_data
