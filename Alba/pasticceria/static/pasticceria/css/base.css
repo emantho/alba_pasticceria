@@ -234,6 +234,18 @@ a:visited {
     /* margin-bottom: 28px; */
 }
 
+.direccion {
+    text-align: center;
+    font-weight: 600;
+    font-size: 17px;
+    margin: 0.5em;
+}
+
+iframe {
+    margin: 0.5em auto;
+    border: 0;
+}
+
 @media only screen and (min-width: 577px) {
     .logo-wrapper {
         align-items: inherit;
