@@ -75,12 +75,28 @@ def cafe(request):
 
     return render(request, "pasticceria/cafe.html", cafeteria)
 
-def carrito(request):
-    my_context = {
-        "mensaje": "Vista para carrito"
-    }
+def abmProductos(request):
 
-    return render(request, "pasticceria/carrito.html", my_context)
+    context = {}
+
+    # Empty form request
+    if request == "GET":
+        context["abmProductos_form"] = forms.AbmProductosForm()
+
+    else:  # Asummig is a POST
+        form = forms.AbmProductosForm(request.POST)
+        context["abmProductos_form"] = form
+
+        # Form validation
+        if form.is_valid():
+            # If correct, inform with message and redirect
+            messages.success(request, "Client created successfully")
+            return redirect("index")
+
+        # IF NO correct
+        # Saty in form but showing an error
+
+    return render(request, "pasticceria/abmProductos.html", {'form':form})
 
 def admin(request):
     my_context = {

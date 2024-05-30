@@ -1,0 +1,35 @@
+{% extends "pasticceria/base.html" %} 
+{% load static %}
+{% block tittle %}Registro de Clientes{% endblock tittle%} 
+{% block css %}
+<link rel="stylesheet" href="{% static "pasticceria/css/abmProductos.css" %}">
+{% endblock css %} 
+
+<!-- Main Content -->
+{% block main %}
+
+    <div class="main_div">
+    <h2>Formulario de alta de Productos</h2>
+    <p>Por favor complete el formulario con la información requerida</p>
+   
+    <form class="form" method="POST" action=" {% url "abmProductos" %} ">
+        {% csrf_token %}
+
+        <fieldset>
+            <legend>Información de producto</legend>
+            {{ form.nombreProducto.label_tag }} {{ form.nombreProducto }}
+            {{ form.descripcion.label_tag }} {{ form.descripcion }}
+            {{ form.categorias.label_tag }} {{ form.categorias }}
+            {{ form.precio.label_tag }} {{ form.precio }}
+            {{ form.rating.label_tag }} {{ form.rating }}
+            {{ form.cantidadDisponible.label_tag }} {{ form.cantidadDisponible }}
+            {{ form.zip.label_tag }} {{ form.zip }}
+        </fieldset>
+
+        <button type="submit">Enviar</button>
+    </form>
+    </div>
+
+{% endblock main %}
+
+<!-- EN esta misma vista inserta un generador de client card que  -->

@@ -1,6 +1,6 @@
 {% extends "pasticceria/base.html" %} 
 {% load static %}
-{% block tittle %}ABM Users{% endblock tittle%} 
+{% block tittle %}Registro de Clientes{% endblock tittle%} 
 {% block css %}
 <link rel="stylesheet" href="{% static "pasticceria/css/abm_clients.css" %}">
 {% endblock css %} 
@@ -9,7 +9,7 @@
 {% block main %}
 
     <div class="main_div">
-    <h2>Formulario de registro</h2>
+    <h2>Formulario de registro de Clientes</h2>
     <p>Por favor complete el formulario con la información requerida</p>
    
     <form class="form" method="POST" action=" {% url "abm_clients" %} ">
@@ -17,11 +17,13 @@
 
         <fieldset>
             <legend>Información Personal</legend>
-            {{ form.userName.label_tag }} {{ form.userName }}
+            {{ form.firstName.label_tag }} {{ form.firstName }}
             {{ form.lastName.label_tag }} {{ form.lastName }}
             {{ form.dni.label_tag }} {{ form.dni }}
-            {{ form.email.label_tag }} {{ form.email }}
-            {{ form.password.label_tag }} {{ form.password }}
+            {{ form.telephone.label_tag }} {{ form.telephone }}
+            {{ form.address.label_tag }} {{ form.address }}
+            {{ form.city.label_tag }} {{ form.city }}
+            {{ form.zip.label_tag }} {{ form.zip }}
         </fieldset>
 
         <fieldset>
@@ -33,7 +35,7 @@
             <legend>Información Adicional</legend>
             {{ form.birthday.label_tag }} {{ form.birthday }}
             {{ form.hearFromUs.label_tag }} {{ form.hearFromUs }}
-            {{ form.comment.label_tag }} {{ form.comment }}
+            <!-- {{ form.comment.label_tag }} {{ form.comment }} -->
         </fieldset>
 
         <button type="submit">Enviar</button>
