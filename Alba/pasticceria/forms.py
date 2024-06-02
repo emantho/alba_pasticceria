@@ -1,34 +1,28 @@
-from typing import Any
 from django import forms
 from django.core.exceptions import ValidationError
+import datetime
 
 
 class AbmClientsForm(forms.Form):
-    firstName = forms.CharField(label='Nombre', required=True)
+    firstName = forms.CharField(label='Nombre', required=True, widget=(forms.TextInput(attrs={"":""})))
     lastName = forms.CharField(label='Apellido', required=True)
     dni = forms.IntegerField(label="DNI", required=True)
-    telephone = forms.CharField(label="Telefono", required=True)
+    telephone = forms.CharField(label="Telefono")
+    email = forms.EmailField(label="Email",required=True)
     address = forms.CharField(label="Dirección",required=True)
     city = forms.CharField(label="Ciudad",required=True)
-    zip = forms.CharField(label="Código Postal",required=True)
-    CHOICES = [
-        ('1','Cuenta Personal'),
-        ('2','Cuenta Empresa'),  
-    ] 
-    Cuenta = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES)
-    birthday = forms.DateField(label="Fecha de Nacimiento", widget=forms.SelectDateWidget)
-    optionList = [(1,"Facebook"),(2,"Instagram"),(3,"Tiktok"),(4,"Snapchat"),(5,"TV"),(6,"Radio"),(7,"Otro")]
-    hearFromUs = forms.CharField(label="¿Como nos conociste?", widget=forms.Select(choices=optionList))
+    years = range(1900, datetime.datetime.now().year + 1)
+    birthday = forms.DateField(label="Fecha de Nacimiento", widget=forms.SelectDateWidget(years=years))
     
-    def clean_userName(self):
+    def clean_firstName(self):
         if not self.cleaned_data["firstName"].isalpha():
-            raise ValidationError("Name can only contains letters")            
+            raise ValidationError("El nombre solo puede contener letras")            
         
         return self.cleaned_data["firstName"]
     
     def clean_lastName(self):
         if not self.cleaned_data["lastName"].isalpha():
-            raise ValidationError("Name can only contains letters")            
+            raise ValidationError("El apellido solo puede contener letras")            
         
         return self.cleaned_data["lastName"]
     
@@ -37,12 +31,9 @@ class AbmClientsForm(forms.Form):
         firstName = cleaned_data.get("firstName")
         lastName = cleaned_data.get("lastName")
         if firstName == "Carlos" and lastName == "Lopez":
-            raise ValidationError("User already exists")
+            raise ValidationError("El Cliente ya existe en el sistema")
         
-        # if self.cleaned_data["dni"] < 1000000:
-        #     raise ValidationError("The DNI must have less than eight (8) digits")
-        
-        return self.cleaned_data
+        return cleaned_data
 
 
 class AbmProductosForm(forms.Form):
@@ -51,27 +42,27 @@ class AbmProductosForm(forms.Form):
     
     listaCategorias = [(1,"Facebook"),(2,"Instagram"),(3,"Tiktok"),(4,"Snapchat"),(5,"TV"),(6,"Radio"),(7,"Otro")]
     categorias = forms.CharField(label="Categorias", widget=forms.Select(choices=listaCategorias))
-    precio = forms.CharField(label="Precio", required=True)
+    precio = forms.IntegerField(label="Precio", required=True)
     rating = forms.CharField(label="Rating",required=True)
-    cantidadDisponible = forms.CharField(label="Cantidad Disponible",required=True)
+    cantidadDisponible = forms.IntegerField(
+        label="Cantidad Disponible",
+        required=True,
+        initial=1,  # Set the default value here
+    )
     
-    def clean_userName(self):
-        if not self.cleaned_data["firstName"].isalpha():
+    def clean_nombreProducto(self):
+        if not self.cleaned_data["nombreProducto"].isalpha():
             raise ValidationError("Name can only contains letters")            
     
-        return self.cleaned_data["firstName"]
+        return self.cleaned_data["nombreProducto"]
     
-    def clean_lastName(self):
-        if not self.cleaned_data["lastName"].isalpha():
-            raise ValidationError("Name can only contains letters")            
-        
-        return self.cleaned_data["lastName"]
+    def clean_cantidadDisponible(self):
+        cantidadDisponible = self.cleaned_data.get("cantidadDisponible")
+        if cantidadDisponible <= 0:
+            raise ValidationError("Cantidad no puede ser menor que cero (0)")
+        return cantidadDisponible
     
     def clean(self):
         cleaned_data = super().clean()
-        firstName = cleaned_data.get("firstName")
-        lastName = cleaned_data.get("lastName")
-        if firstName == "Carlos" and lastName == "Lopez":
-            raise ValidationError("User already exists")
-        
-        return self.cleaned_data
+        # Additional cleaning logic if needed
+        return cleaned_data
