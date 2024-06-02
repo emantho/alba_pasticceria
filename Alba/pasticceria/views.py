@@ -42,11 +42,13 @@ def abm_clients(request):
         # Form validation
         if form.is_valid():
             # If correct, inform with message and redirect
-            messages.success(request, "Client created successfully")
+            messages.success(request, "Cliente creado exitosamente")
             return redirect("index")
 
         # IF NO correct
-        # Saty in form but showing an error
+        # else:
+            
+        #     messages.error(request, "Existe un error, revise los datos ingresados")
 
     return render(request, "pasticceria/abm_clients.html", {'form':form})
 
@@ -90,7 +92,7 @@ def abmProductos(request):
         # Form validation
         if form.is_valid():
             # If correct, inform with message and redirect
-            messages.success(request, "Client created successfully")
+            messages.success(request, "Producto creado exitosamente")
             return redirect("index")
 
         # IF NO correct

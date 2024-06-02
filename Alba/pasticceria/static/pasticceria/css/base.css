@@ -116,9 +116,20 @@ a:visited {
 
 /* MAIN */
 .main {
-    display: block;
+    display: flex;
+    flex-direction: column;
     margin: 1rem auto;
     max-width: 1600px;
+    justify-content: center;
+    justify-items: center;
+}
+
+.main-message {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    max-width: 1600;
+    
 }
 
 .main-div {
@@ -127,6 +138,22 @@ a:visited {
     margin: 0 auto;
     max-width: 1600;
     height: 100svh;
+}
+
+.main .messages {
+    position: relative;
+    padding: 15px;
+}
+
+.main .messages .success {    
+    background-color: rgba(37, 198, 55, 0.5);
+    color: black;
+    padding: 1em;
+}
+
+.main .messages .error {
+    background-color: rgb(252, 114, 114);
+    color: rgb(254, 9, 9);
 }
 
 /* FOOTER */
@@ -149,7 +176,7 @@ a:visited {
 @media only screen and (min-width: 992px) {
     .footer-body {
         display: block;
-        padding: 32px 32px 0 32px;
+        padding: 32px 0 0 0;
         flex-direction: column;
     }
 }

@@ -16,26 +16,42 @@
         {% csrf_token %}
 
         <fieldset>
-            <legend>Información Personal</legend>
-            {{ form.firstName.label_tag }} {{ form.firstName }}
-            {{ form.lastName.label_tag }} {{ form.lastName }}
-            {{ form.dni.label_tag }} {{ form.dni }}
-            {{ form.telephone.label_tag }} {{ form.telephone }}
-            {{ form.address.label_tag }} {{ form.address }}
-            {{ form.city.label_tag }} {{ form.city }}
-            {{ form.zip.label_tag }} {{ form.zip }}
+            <div class="form-group">
+                <div class="form-item">
+                {{ form.firstName.label_tag }} {{ form.firstName }} {{ form.firstName.errors }}
+                </div>
+                <div class="form-item">
+                {{ form.lastName.label_tag }} {{ form.lastName }} {{ form.lastName.errors }}
+                </div>
+            </div>
         </fieldset>
-
         <fieldset>
-            <legend>Tipo de cuenta</legend>
-            {{ form.Cuenta.label_tag }} {{ form.Cuenta }}
+            <div class="form-group">
+                <div class="form-item">
+                    {{ form.dni.label_tag }} {{ form.dni }} {{ form.dni.errors }}
+                </div>
+                <div class="form-item">
+                    {{ form.email.label_tag }} {{ form.email }} {{ form.email.errors }}
+                </div>
+            </div>
         </fieldset>
-
         <fieldset>
-            <legend>Información Adicional</legend>
+            <div class="form-group">
+                <div class="form-item">
+            {{ form.telephone.label_tag }} {{ form.telephone }} {{ form.telephone.errors }}
+            </div>
+                <div class="form-item">
+            {{ form.address.label_tag }} {{ form.address }} {{ form.address.errors }}
+            </div>
+        </fieldset>
+        <fieldset>
+            <div class="form-group">
+                <div class="form-item">
+            {{ form.city.label_tag }} {{ form.city }} {{ form.city.errors }}
+            </div>
+                <div class="form-item">
             {{ form.birthday.label_tag }} {{ form.birthday }}
-            {{ form.hearFromUs.label_tag }} {{ form.hearFromUs }}
-            <!-- {{ form.comment.label_tag }} {{ form.comment }} -->
+            </div>
         </fieldset>
 
         <button type="submit">Enviar</button>

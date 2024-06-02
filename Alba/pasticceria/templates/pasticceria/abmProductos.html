@@ -16,14 +16,27 @@
         {% csrf_token %}
 
         <fieldset>
-            <legend>Información de producto</legend>
-            {{ form.nombreProducto.label_tag }} {{ form.nombreProducto }}
-            {{ form.descripcion.label_tag }} {{ form.descripcion }}
-            {{ form.categorias.label_tag }} {{ form.categorias }}
+            <div class="form-group">
+                <div class="form-item">
+                    {{ form.nombreProducto.label_tag }} {{ form.nombreProducto }}
+                </div>
+                <div class="form-item">
+                    {{ form.descripcion.label_tag }} {{ form.descripcion }}
+                </div>
+                <div class="form-item">
+                {{ form.categorias.label_tag }} {{ form.categorias }}
+                </div>
+        </fieldset>
+        <fieldset>
+            <div class="form-item">
             {{ form.precio.label_tag }} {{ form.precio }}
+            </div>
+            <div class="form-item">
             {{ form.rating.label_tag }} {{ form.rating }}
+            </div>
+            <div class="form-item">
             {{ form.cantidadDisponible.label_tag }} {{ form.cantidadDisponible }}
-            {{ form.zip.label_tag }} {{ form.zip }}
+            </div>
         </fieldset>
 
         <button type="submit">Enviar</button>

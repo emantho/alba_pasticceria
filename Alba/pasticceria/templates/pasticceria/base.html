@@ -43,7 +43,12 @@
                 </ul>
             </div>
         </nav>
-            {% comment %} Strcuture for in screen messages {% endcomment %}
+    </header>
+
+    <!-- Main -->
+    <main class="main">
+        <div class="main-message">
+        {% comment %} Strcuture for in screen messages {% endcomment %}
         {% if messages %}
             <ul class="messages">
                 {% for message in messages %}
@@ -51,10 +56,7 @@
                 {% endfor %}
             </ul>
         {% endif %}
-    </header>
-
-    <!-- Main -->
-    <main class="main">
+        </div>
         <div class="main-div">
         {% block main %}{% endblock main %}
         </div>

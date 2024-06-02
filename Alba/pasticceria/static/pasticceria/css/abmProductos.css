@@ -1,13 +1,7 @@
 /* Styles for abm_clients template*/
 
 .main-div {
-    width: 100%;
-    margin: 1em;
     height: 100%;
-    font-family: Tahoma;
-    font-size: 16px;
-    justify-content: center;
-    justify-items: center;
 }
 
 h2,
@@ -16,65 +10,50 @@ p {
     text-align: center;
 }
 
-.form {
-    width: 60vw;
-    max-width: 500px;
-    min-width: 300px;
-    margin: 0 auto;
-    padding-bottom: 2em;
+.form-group {
+    margin-bottom: 15px;
 }
 
-fieldset {
-    border: none;
-    padding: 2rem 0;
-    border-bottom: 3px solid #3b3b4f;
+.form-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
-fieldset:last-of-type {
-    border-bottom: none;
+.form-item label {
+    width: 150px; /* Adjust width as needed */
+    margin-right: 10px;
+    font-weight: bold;
 }
 
-label {
-    display: block;
-    margin: 0.5rem 0;
+.form-item input, 
+.form-item select, 
+.form-item textarea {
+    padding: 10px;
+    font-size: 16px;
+    flex-grow: 1;
+    box-sizing: border-box;
 }
 
-input,
-textarea,
-select {
-    margin: 10px 0 0 0;
-    width: 100%;
-    min-height: 2em;
+.form-item .errorlist {
+    margin-left: 10px;
+    color: red;
 }
 
-input,
-textarea {
-    background-color: var(--clr-navButton);
-    border: 1px solid var(--clr-navButton);
-    color: #ffffff;
+form fieldset {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
 }
 
-.inline {
-    width: unset;
-    margin: 0 0.5em 0 0;
-    vertical-align: middle;
+form fieldset legend {
+    font-size: 1.2em;
+    font-weight: bold;
 }
 
-input[type="submit"] {
-    display: block;
-    width: 60%;
-    margin: 1em auto;
-    height: 2em;
-    font-size: 1.1rem;
-    background-color: #3b3b4f;
-    border-color: white;
-    min-width: 300px;
+form button[type="submit"] {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
-input[type="file"] {
-    padding: 1px 2px;
-}
-
-a {
-    color: #dfdfe2
-}
