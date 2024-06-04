@@ -4,33 +4,33 @@ import datetime
 
 
 class AbmClientsForm(forms.Form):
-    firstName = forms.CharField(label='Nombre', required=True, widget=(forms.TextInput(attrs={"":""})))
-    lastName = forms.CharField(label='Apellido', required=True)
+    nombre = forms.CharField(label='Nombre', required=True, widget=(forms.TextInput(attrs={"":""})))
+    apellido = forms.CharField(label='Apellido', required=True)
     dni = forms.IntegerField(label="DNI", required=True)
-    telephone = forms.CharField(label="Telefono")
+    telefono = forms.CharField(label="Telefono")
     email = forms.EmailField(label="Email",required=True)
-    address = forms.CharField(label="Dirección",required=True)
-    city = forms.CharField(label="Ciudad",required=True)
-    years = range(1900, datetime.datetime.now().year + 1)
-    birthday = forms.DateField(label="Fecha de Nacimiento", widget=forms.SelectDateWidget(years=years))
+    direccion = forms.CharField(label="Dirección",required=True)
+    ciudad = forms.CharField(label="Ciudad",required=True)
+    anios = range(1900, datetime.datetime.now().year + 1)
+    cumpleanios = forms.DateField(label="Fecha de Nacimiento", widget=forms.SelectDateWidget(years=anios), )
     
     def clean_firstName(self):
-        if not self.cleaned_data["firstName"].isalpha():
+        if not self.cleaned_data["nombre"].isalpha():
             raise ValidationError("El nombre solo puede contener letras")            
         
-        return self.cleaned_data["firstName"]
+        return self.cleaned_data["nombre"]
     
     def clean_lastName(self):
-        if not self.cleaned_data["lastName"].isalpha():
+        if not self.cleaned_data["apellido"].isalpha():
             raise ValidationError("El apellido solo puede contener letras")            
         
-        return self.cleaned_data["lastName"]
+        return self.cleaned_data["apellido"]
     
     def clean(self):
         cleaned_data = super().clean()
-        firstName = cleaned_data.get("firstName")
-        lastName = cleaned_data.get("lastName")
-        if firstName == "Carlos" and lastName == "Lopez":
+        nombre = cleaned_data.get("nombre")
+        apellido = cleaned_data.get("apellido")
+        if nombre == "Carlos" and apellido == "Lopez":
             raise ValidationError("El Cliente ya existe en el sistema")
         
         return cleaned_data

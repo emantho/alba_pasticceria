@@ -1,5 +1,18 @@
-.cafe {
+.menu {
+  display: flex;
   height: 100%;
+}
+
+h2,
+p {
+  margin: 1em auto;
+  text-align: center;
+}
+
+.cafeteria-titulo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 /* 

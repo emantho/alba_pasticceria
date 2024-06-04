@@ -137,7 +137,7 @@ a:visited {
     flex-wrap: wrap;
     margin: 0 auto;
     max-width: 1600;
-    height: 100svh;
+    /* height: 100svh; */
 }
 
 .main .messages {
