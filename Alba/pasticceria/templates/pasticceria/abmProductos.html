@@ -18,6 +18,9 @@
         <fieldset>
             <div class="form-group">
                 <div class="form-item">
+                    {{ form.codigoProducto.label_tag }} {{ form.codigoProducto }}
+                </div>
+                <div class="form-item">
                     {{ form.nombreProducto.label_tag }} {{ form.nombreProducto }}
                 </div>
                 <div class="form-item">
@@ -35,7 +38,7 @@
             {{ form.rating.label_tag }} {{ form.rating }}
             </div>
             <div class="form-item">
-            {{ form.cantidadDisponible.label_tag }} {{ form.cantidadDisponible }}
+            {{ form.inventario.label_tag }} {{ form.inventario }}
             </div>
         </fieldset>
 

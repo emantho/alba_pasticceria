@@ -37,14 +37,15 @@ class AbmClientsForm(forms.Form):
 
 
 class AbmProductosForm(forms.Form):
+    codigoProducto = forms.IntegerField(label='Código', required=True)
     nombreProducto = forms.CharField(label='Nombre', required=True)
     descripcion = forms.CharField(label='Descripción', required=True)
     
-    listaCategorias = [(1,"Facebook"),(2,"Instagram"),(3,"Tiktok"),(4,"Snapchat"),(5,"TV"),(6,"Radio"),(7,"Otro")]
+    listaCategorias = [(1,"Cafeteria"),(2,"Postres"),(3,"Tortas"),(4,"Bebidas Calientes"),(5,"Bebidas Frias"),(6,"Heladeria"),(7,"Otro")]
     categorias = forms.CharField(label="Categorias", widget=forms.Select(choices=listaCategorias))
     precio = forms.IntegerField(label="Precio", required=True)
     rating = forms.CharField(label="Rating",required=True)
-    cantidadDisponible = forms.IntegerField(
+    inventario = forms.IntegerField(
         label="Cantidad Disponible",
         required=True,
         initial=1,  # Set the default value here
@@ -56,11 +57,11 @@ class AbmProductosForm(forms.Form):
     
         return self.cleaned_data["nombreProducto"]
     
-    def clean_cantidadDisponible(self):
-        cantidadDisponible = self.cleaned_data.get("cantidadDisponible")
-        if cantidadDisponible <= 0:
+    def clean_inventario(self):
+        inventario = self.cleaned_data.get("inventario")
+        if inventario <= 0:
             raise ValidationError("Cantidad no puede ser menor que cero (0)")
-        return cantidadDisponible
+        return inventario
     
     def clean(self):
         cleaned_data = super().clean()
