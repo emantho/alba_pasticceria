@@ -18,24 +18,24 @@
         <fieldset>
             <div class="form-group">
                 <div class="form-item">
-                    {{ form.codigoProducto.label_tag }} {{ form.codigoProducto }}
+                    {{ form.codigoProducto.label_tag }} {{ form.codigoProducto }} {{ form.codigoProducto.error }}
                 </div>
                 <div class="form-item">
-                    {{ form.nombreProducto.label_tag }} {{ form.nombreProducto }}
+                    {{ form.nombreProducto.label_tag }} {{ form.nombreProducto }} {{ form.nombreProducto.error }}
                 </div>
                 <div class="form-item">
-                    {{ form.descripcion.label_tag }} {{ form.descripcion }}
+                    {{ form.descripcion.label_tag }} {{ form.descripcion }} {{ form.descripcion.error }}
                 </div>
                 <div class="form-item">
-                {{ form.categorias.label_tag }} {{ form.categorias }}
+                {{ form.categorias.label_tag }} {{ form.categorias }} {{ form.categorias.error }}
                 </div>
         </fieldset>
         <fieldset>
             <div class="form-item">
-            {{ form.precio.label_tag }} {{ form.precio }}
+            {{ form.precio.label_tag }} {{ form.precio }} {{ form.precio.error }}
             </div>
             <div class="form-item">
-            {{ form.inventario.label_tag }} {{ form.inventario }}
+            {{ form.existencias.label_tag }} {{ form.existencias }} {{ form.existencias.error }}
             </div>
         </fieldset>
 
