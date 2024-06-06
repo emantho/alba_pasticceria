@@ -42,14 +42,13 @@ class AbmProductosForm(forms.Form):
     nombreProducto = forms.CharField(label='Nombre', required=True)
     descripcion = forms.CharField(label='Descripción', required=True)
     
-    listaCategorias = [(1,"Cafeteria"),(2,"Postres"),(3,"Tortas"),(4,"Bebidas Calientes"),(5,"Bebidas Frias"),(6,"Heladeria"),(7,"Otro")]
+    listaCategorias = [(1,"Cafeteria"),(2,"Postres"),(3,"Tortas"),(4,"Bebidas Calientes"),(5,"Bebidas Frias")]
     categorias = forms.CharField(label="Categorias", widget=forms.Select(choices=listaCategorias))
     precio = forms.IntegerField(label="Precio", required=True)
-    rating = forms.CharField(label="Rating",required=True)
     inventario = forms.IntegerField(
         label="Cantidad Disponible",
         required=True,
-        initial=1,  # Set the default value here
+        initial=1,  # default value in 1
     )
     
     def clean_nombreProducto(self):
@@ -66,7 +65,7 @@ class AbmProductosForm(forms.Form):
     
     def clean(self):
         cleaned_data = super().clean()
-        # Additional cleaning logic if needed
+        # añadir más validaciones según requiera
         return cleaned_data
 
 class OrdenForm(forms.ModelForm):

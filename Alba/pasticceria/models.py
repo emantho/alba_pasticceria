@@ -62,10 +62,9 @@ class Vendedor(models.Model):
 class Producto(models.Model):
     codigo = models.IntegerField(verbose_name='Código', unique=True)
     nombre = models.CharField(verbose_name='Nombre', max_length=100)
-    descripcion = models.CharField(verbose_name='Descripción', max_length=100)
+    descripcion = models.CharField(verbose_name='Descripción', max_length=200)
     categorias = models.CharField(verbose_name='Categorías', max_length=100, unique=True)
     precio = models.IntegerField(verbose_name='Precio')
-    rating = models.CharField(verbose_name='Rating', max_length=100)
     inventario = models.IntegerField(verbose_name='Inventario')
     
     def __str__(self):
