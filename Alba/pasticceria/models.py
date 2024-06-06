@@ -27,7 +27,7 @@ from datetime import date
 # Producto
     # Codigo
     # Nombre
-    # inventario
+    # existencias
     
 # Venta <<<--- Conector x>x>x>x> Se puede cambiar el nombre a transacción
     # clienteID
@@ -38,10 +38,15 @@ from datetime import date
     #### Ver video modelos 2 1:07:00
 ###
 
-class Cliente(models.Model):
+class Persona(models.Model):
     nombre = models.CharField(max_length=100, verbose_name="Nombre")
     apellido = models.CharField(max_length=100, verbose_name="Apellido")
     dni = models.IntegerField(verbose_name="DNI", unique= True)
+    
+    class Meta:
+        abstract = True
+    
+class Cliente(models.Model):
     email = models.EmailField(max_length=254, verbose_name="Email", unique= True)
     direccion = models.CharField(max_length=100, verbose_name ="Dirección")
     ciudad = models.CharField(max_length=100, verbose_name="Ciudad")
@@ -52,9 +57,6 @@ class Cliente(models.Model):
 
 class Vendedor(models.Model):
     codigo = models.IntegerField(verbose_name='Código', unique=True)
-    nombre = models.CharField(verbose_name='Nombre', max_length=100)
-    apellido = models.CharField(verbose_name='Apellido', max_length=100)
-    dni = models.IntegerField(verbose_name='DNI', unique=True)
     
     def __str__(self):
         return f"{self.nombre} {self.apellido}"
@@ -65,7 +67,7 @@ class Producto(models.Model):
     descripcion = models.CharField(verbose_name='Descripción', max_length=200)
     categorias = models.CharField(verbose_name='Categorías', max_length=100, unique=True)
     precio = models.IntegerField(verbose_name='Precio')
-    inventario = models.IntegerField(verbose_name='Inventario')
+    existencias = models.IntegerField(verbose_name='existencias')
     
     def __str__(self):
         return f"{self.codigo} {self.nombre}"

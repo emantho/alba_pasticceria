@@ -43,10 +43,10 @@ class AbmProductosForm(forms.Form):
     descripcion = forms.CharField(label='Descripción', required=True)
     
     listaCategorias = [(1,"Cafeteria"),(2,"Postres"),(3,"Tortas"),(4,"Bebidas Calientes"),(5,"Bebidas Frias")]
-    categorias = forms.CharField(label="Categorias", widget=forms.Select(choices=listaCategorias))
+    categorias = forms.CharField(label="Categorias", widget=forms.Select(choices=listaCategorias), required=True)
     precio = forms.IntegerField(label="Precio", required=True)
-    inventario = forms.IntegerField(
-        label="Cantidad Disponible",
+    existencias = forms.IntegerField(
+        label="Existencias",
         required=True,
         initial=1,  # default value in 1
     )
@@ -57,11 +57,11 @@ class AbmProductosForm(forms.Form):
     
         return self.cleaned_data["nombreProducto"]
     
-    def clean_inventario(self):
-        inventario = self.cleaned_data.get("inventario")
-        if inventario <= 0:
+    def clean_existencias(self):
+        existencias = self.cleaned_data.get("existencias")
+        if existencias <= 0:
             raise ValidationError("Cantidad no puede ser menor que cero (0)")
-        return inventario
+        return existencias
     
     def clean(self):
         cleaned_data = super().clean()
