@@ -1,0 +1,17 @@
+{% extends "pasticceria/base.html" %} 
+{% load static %}
+{% block tittle %}{% endblock tittle%} 
+{% block css %}
+<link rel="stylesheet" href="{% static "pasticceria/css/crear_orden.css" %}">
+{% endblock css %} 
+
+{% block main %}
+
+<h2>Crear Orden</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ orden_form.as_p }}
+    <button type="submit">Crear Orden</button>
+</form> 
+
+{% endblock main %}

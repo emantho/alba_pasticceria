@@ -55,6 +55,9 @@ class Vendedor(models.Model):
     nombre = models.CharField(verbose_name='Nombre', max_length=100)
     apellido = models.CharField(verbose_name='Apellido', max_length=100)
     dni = models.IntegerField(verbose_name='DNI', unique=True)
+    
+    def __str__(self):
+        return f"{self.nombre} {self.apellido}"
 
 class Producto(models.Model):
     codigo = models.IntegerField(verbose_name='Código', unique=True)
@@ -64,3 +67,23 @@ class Producto(models.Model):
     precio = models.IntegerField(verbose_name='Precio')
     rating = models.CharField(verbose_name='Rating', max_length=100)
     inventario = models.IntegerField(verbose_name='Inventario')
+    
+    def __str__(self):
+        return f"{self.codigo} {self.nombre}"
+
+class Orden(models.Model):
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='ordenes')
+    vendedor = models.ForeignKey(Vendedor, on_delete=models.CASCADE, related_name='ordenes')
+    productos = models.ManyToManyField(Producto, through='OrdenItem')
+    fecha = models.DateField(auto_now_add=True)
+    
+    def __str__(self):
+        return f"Orden {self.id} - Cliente: {self.cliente} - Vendedor: {self.vendedor}"
+
+class OrdenItem(models.Model):
+    orden = models.ForeignKey(Orden, on_delete=models.CASCADE)
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    cantidad = models.PositiveIntegerField()
+
+    def __str__(self):
+        return f"{self.cantidad} of {self.producto.nombre}"

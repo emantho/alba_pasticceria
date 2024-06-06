@@ -1,5 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
+from .models import Orden, OrdenItem
 import datetime
 
 
@@ -67,3 +68,16 @@ class AbmProductosForm(forms.Form):
         cleaned_data = super().clean()
         # Additional cleaning logic if needed
         return cleaned_data
+
+class OrdenForm(forms.ModelForm):
+    class Meta:
+        model = Orden
+        fields = ['cliente', 'vendedor']
+
+class OrdenItemForm(forms.ModelForm):
+    class Meta:
+        model = OrdenItem
+        fields = ['producto', 'cantidad']
+
+
+

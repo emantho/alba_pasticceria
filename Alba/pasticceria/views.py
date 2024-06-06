@@ -1,10 +1,8 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from . import forms
-from .forms import AbmClientsForm
-import datetime
+from .forms import OrdenForm, OrdenItemForm
 from django.contrib import messages
+from .models import Orden, OrdenItem, Producto
 
 
 # Create your views here.
@@ -99,6 +97,38 @@ def abmProductos(request):
         # Saty in form but showing an error
 
     return render(request, "pasticceria/abmProductos.html", {'form':form})
+
+def crear_orden(request):
+    if request.method == 'POST':
+        orden_form = OrdenForm(request.POST)
+        if orden_form.is_valid():
+            orden = orden_form.save()
+            return redirect('anadir_orden_items', orden_id=orden.id)
+    else:
+        orden_form = OrdenForm()
+
+    return render(request, 'pasticceria/crear_orden.html', {'orden_form': orden_form})
+
+def anadir_orden_items(request, orden_id):
+    orden = get_object_or_404(Orden, id=orden_id)
+    if request.method == 'POST':
+        orden_item_form = OrdenItemForm(request.POST)
+        if orden_item_form.is_valid():
+            orden_item = orden_item_form.save(commit=False)
+            orden_item.orden = orden
+            orden_item.save()
+            return redirect('anadir_orden_items', orden_id=orden.id)  # Redirect to the same page to add more items
+    else:
+        orden_item_form = OrdenItemForm()
+
+    orden_items = OrdenItem.objects.filter(orden=orden)
+
+    return render(request, 'pasticceria/anadir_orden_items.html', {
+        'orden_item_form': orden_item_form,
+        'orden': orden,
+        'orden_items': orden_items
+    })
+
 
 def admin(request):
     my_context = {

@@ -1,0 +1,24 @@
+{% extends "pasticceria/base.html" %} 
+{% load static %}
+{% block tittle %}{% endblock tittle%} 
+{% block css %}
+<link rel="stylesheet" href="{% static "pasticceria/css/anadir_order_items.css" %}">
+{% endblock css %} 
+
+{% block main %}
+
+<h2>Añadir Items a Orden #{{ orden.id }}</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ orden_item_form.as_p }}
+    <button type="submit">Añadir Item</button>
+</form>
+<h3>Item Actuales:</h3>
+<ul>
+    {% for item in orden_items %}
+        <li>{{ item.cantidad }} x {{ item.producto.nombre }}</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'crear_orden' %}">Iniciar nueva orden</a>
+
+{% endblock main %}
