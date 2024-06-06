@@ -46,7 +46,7 @@ class Persona(models.Model):
     class Meta:
         abstract = True
     
-class Cliente(models.Model):
+class Cliente(Persona):
     email = models.EmailField(max_length=254, verbose_name="Email", unique= True)
     direccion = models.CharField(max_length=100, verbose_name ="Dirección")
     ciudad = models.CharField(max_length=100, verbose_name="Ciudad")
@@ -55,7 +55,7 @@ class Cliente(models.Model):
     def __str__(self):
         return f"{self.nombre} {self.apellido}"
 
-class Vendedor(models.Model):
+class Vendedor(Persona):
     codigo = models.IntegerField(verbose_name='Código', unique=True)
     
     def __str__(self):
