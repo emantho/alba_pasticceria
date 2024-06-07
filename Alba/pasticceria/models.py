@@ -67,7 +67,7 @@ class Producto(models.Model):
     descripcion = models.CharField(verbose_name='Descripción', max_length=200)
     categorias = models.CharField(verbose_name='Categorías', max_length=100, unique=True)
     precio = models.IntegerField(verbose_name='Precio')
-    existencias = models.IntegerField(verbose_name='existencias')
+    existencias = models.IntegerField(verbose_name='Existencias', null=True)
     
     def __str__(self):
         return f"{self.codigo} {self.nombre}"
