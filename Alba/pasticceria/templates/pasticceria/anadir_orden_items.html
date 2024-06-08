@@ -1,27 +1,31 @@
-{% extends "pasticceria/base.html" %} 
+{% extends "pasticceria/base.html" %}
 {% load static %}
-{% block tittle %}Añadir Items{% endblock tittle%} 
+{% block tittle %}Añadir Items{% endblock tittle%}
 {% block css %}
 <link rel="stylesheet" href="{% static "pasticceria/css/anadir_orden_items.css" %}">
-{% endblock css %} 
+{% endblock css %}
 
 {% block main %}
 
 <div class="main_div">
     <h2>Orden #{{ orden.id }}</h2>
-    
+
     <form class="form" method="post">
         {% csrf_token %}
 
         <fieldset>
             <div class="form-group">
                 <div class="form-item">
-                    {{ orden_item_form.producto.label_tag }} {{ orden_item_form.producto }} {{ orden_item_form.producto.error }}
+                    {{ orden_item_form.producto.label_tag }} 
+                    {{ orden_item_form.producto }}
+                    {{ orden_item_form.producto.error }}
                 </div>
             </div>
             <div class="form-group">
                 <div class="form-item">
-                    {{ orden_item_form.cantidad.label_tag }} {{ orden_item_form.cantidad }} {{ orden_item_form.cantidad.error }}
+                    {{ orden_item_form.cantidad.label_tag }} 
+                    {{ orden_item_form.cantidad }}
+                    {{ orden_item_form.cantidad.error }}
                 </div>
             </div>
             <button type="submit">Añadir Item</button>
@@ -29,20 +33,37 @@
     </form>
 
     <br>
-
     <div class="items-anadidos">
-    <h3>Items añadidos:</h3>
+        <h3>Items añadidos:</h3>
 
-    <ul>
-        {% for item in orden_items %}
-        <li>{{ item.cantidad }} x {{ item.producto.nombre }}</li>
-        {% endfor %}
-    </ul>
+        <div class="item-anadidos-list">
+            <table class="table">
+                <tr>
+                    <th>Cantidad</th>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                </tr>
+                {% for item in orden_items %}
+                <tr>
+                    <td>{{ item.cantidad }}</td>
+                    <td>{{ item.producto.nombre }}</td>
+                    <td>{{ item.producto.precio }}</td>
+                </tr>
+                {% endfor %}
+
+                <!-- <ul>
+                        {% for item in orden_items %}
+                        <li><span>{{ item.cantidad }} x {{ item.producto.nombre }}</span> <span class="precio">{{
+                                item.producto.precio }}</span></li>
+                        {% endfor %}
+                    </ul> -->
+            </table>
+        </div>
     </div>
 
     <div class="botones">
-    <a href="{% url 'crear_orden' %}">Inicio</a>
-    <a href="{% url 'crear_orden' %}">Iniciar nueva orden</a>
+        <a href="{% url 'crear_orden' %}">Inicio</a>
+        <a href="{% url 'crear_orden' %}">Iniciar nueva orden</a>
     </div>
 </div>
 {% endblock main %}

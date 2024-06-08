@@ -4,8 +4,7 @@
     height: 100%;
 }
 
-h2,
-p {
+h2, h3, p {
     margin: 1em auto;
     text-align: center;
 }
@@ -68,6 +67,13 @@ form button[type="submit"] {
     padding: 10px;
     margin-bottom: 20px;
 }
+
+.items-anadidos h3 {
+    margin: 1em auto;
+    text-align: center;
+}
+
+
 
 .botones {
     display: flex;
