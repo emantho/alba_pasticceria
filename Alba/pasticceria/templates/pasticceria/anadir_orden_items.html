@@ -36,7 +36,7 @@
     <div class="items-anadidos">
         <h3>Items añadidos:</h3>
 
-        <div class="item-anadidos-list">
+        <div class="item-anadidos-table">
             <table class="table">
                 <tr>
                     <th>Cantidad</th>
@@ -47,7 +47,7 @@
                 <tr>
                     <td>{{ item.cantidad }}</td>
                     <td>{{ item.producto.nombre }}</td>
-                    <td>{{ item.producto.precio }}</td>
+                    <td>${{ item.producto.precio }}</td>
                 </tr>
                 {% endfor %}
 
@@ -62,7 +62,7 @@
     </div>
 
     <div class="botones">
-        <a href="{% url 'crear_orden' %}">Inicio</a>
+        <a href="{% url 'index' %}">Inicio</a>
         <a href="{% url 'crear_orden' %}">Iniciar nueva orden</a>
     </div>
 </div>
