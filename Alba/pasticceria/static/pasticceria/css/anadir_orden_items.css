@@ -1,0 +1,91 @@
+
+
+.main-div {
+    height: 100%;
+}
+
+h2,
+p {
+    margin: 1em auto;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.form-item label {
+    width: 150px; /* Adjust width as needed */
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.form-item input, 
+.form-item select, 
+.form-item textarea {
+    padding: 10px;
+    font-size: 16px;
+    flex-grow: 1;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.form-item .errorlist {
+    margin-left: 10px;
+    color: red;
+}
+
+form fieldset {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+form fieldset legend {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+form button[type="submit"] {
+    background-color: var(--clr-navButton);
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.items-anadidos {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.botones {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    padding: 1em;
+
+}
+.botones a {
+    background-color: var( --clr-navButton);
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 7px;
+    cursor: pointer;
+    margin: 0 10px
+}
+
+.botones a:hover {
+    background-color: var(--clr-navButtonHover);
+}

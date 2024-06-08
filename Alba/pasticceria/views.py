@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from . import forms
 from .forms import OrdenForm, OrdenItemForm
 from django.contrib import messages
-from .models import Orden, OrdenItem, Producto
+from .models import Orden, OrdenItem
 
 
 # Create your views here.
