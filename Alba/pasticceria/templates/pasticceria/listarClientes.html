@@ -1,0 +1,17 @@
+{% extends "pasticceria/base.html" %} 
+{% load static %}
+{% block tittle %}Registro de Clientes{% endblock tittle%} 
+{% block css %}
+<link rel="stylesheet" href="{% static "pasticceria/css/listarClientes.css" %}">
+{% endblock css %} 
+
+<!-- Main Content -->
+{% block main %}
+    <section>
+        {% for cliente in clientes %}
+        <article>
+            <p>{{ cliente }}</p>
+        </article>
+        {% endfor %}
+    </section>
+{% endblock main %}

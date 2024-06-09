@@ -6,6 +6,17 @@
 {% endblock css %}
 
 {% block main %}
+    <section>
+        {% for producto in productos %}
+        <article>
+            <p>{{ producto }}</p>
+        </article>
+        {% endfor %}
+    </section>
+{% endblock main %}
+
+{% comment %} 
+{% block main %}
 
 <div class="menu">
   <h1>ALBA Pasticceria</h1>
@@ -32,4 +43,4 @@
 
 </div>
 
-{% endblock main %}
+{% endblock main %} {% endcomment %}

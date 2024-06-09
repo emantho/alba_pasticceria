@@ -14,17 +14,14 @@ def index(request):
 
     return render(request, "pasticceria/index.html", my_context_var)
 
+## ------- CLIENTES -------
+# Listar clientes
 
-def client_list(request):
+def listarClientes(request):
+    clientes = Cliente.objects.all()
+    return render(request, "pasticceria/listarClientes.html", {"clientes" : clientes})
 
-    my_context = {
-        "names": ["Carlos Perez", "Patricia Fernandez", "Emanuel Manrique"],
-        "payment_status": True,
-    }
-
-    return render(request, "pasticceria/client_list.html", my_context)
-
-
+# Alta de clientes
 def abm_clients(request):
 
     context = {}
@@ -50,17 +47,24 @@ def abm_clients(request):
 
     return render(request, "pasticceria/abm_clients.html", {'form':form})
 
-def menu(request):
-    pasteleria = {
-        "pasteles": [
-            {"Donut":1.50},
-            {"Cherry Pie":2.75},
-            {"Cheesecake":3.00},
-            {"Cinnamon Roll":2.50},
-            ]
-    }
 
-    return render(request, "pasticceria/menu.html", pasteleria)
+## ------- PRODUCTOS -------
+# Listar productos
+def menu(request):
+    productos = Producto.objects.all()
+    return render(request, "pasticceria/menu.html", {"productos" : productos})
+
+# def menu(request):
+#     pasteleria = {
+#         "pasteles": [
+#             {"Donut":1.50},
+#             {"Cherry Pie":2.75},
+#             {"Cheesecake":3.00},
+#             {"Cinnamon Roll":2.50},
+#             ]
+#     }
+
+#     return render(request, "pasticceria/menu.html", pasteleria)
 
 def cafe(request):
     cafeteria = {
@@ -75,8 +79,8 @@ def cafe(request):
 
     return render(request, "pasticceria/cafe.html", cafeteria)
 
-## ------- PRODUCTOS -------
-# Alta de productos
+
+# Alta productos
 def abmProductos(request):
 
     context = {}
@@ -100,7 +104,7 @@ def abmProductos(request):
 
     return render(request, "pasticceria/abmProductos.html", {'form':form})
 
-# Mostrar productos
+
 
 ## ORDEN 
 # crear orden 
