@@ -16,36 +16,43 @@ def index(request):
 
 ## ------- CLIENTES -------
 # Listar clientes
-
-def listarClientes(request):
+def clienteListar(request):
     clientes = Cliente.objects.all()
-    return render(request, "pasticceria/listarClientes.html", {"clientes" : clientes})
+    return render(request, "pasticceria/clienteListar.html", {"clientes" : clientes})
 
 # Alta de clientes
-def abm_clients(request):
-
+def clienteAlta(request):
     context = {}
-
     # Empty form request
     if request == "GET":
-        context["abm_clients_form"] = forms.AbmClientsForm()
-
+        context["cliente_alta_form"] = forms.ClienteAltaForm()
     else:  # Asummig is a POST
-        form = forms.AbmClientsForm(request.POST)
-        context["abm_clients_form"] = form
-
+        form = forms.ClienteAltaForm(request.POST)
+        context["cliente_alta_form"] = form
         # Form validation
         if form.is_valid():
             # If correct, inform with message and redirect
             messages.success(request, "Cliente creado exitosamente")
             return redirect("index")
-
         # IF NO correct
-        # else:
-            
+        # else:            
         #     messages.error(request, "Existe un error, revise los datos ingresados")
+    return render(request, "pasticceria/clienteAlta.html", {'form':form})
 
-    return render(request, "pasticceria/abm_clients.html", {'form':form})
+# Actualizar cliente
+def actualizarCliente(request, pk):
+    cliente = get_object_or_404(Cliente, pk=pk)
+    if request.method == 'POST':
+        form = forms.ClienteAltaForm(request.POST, instance=cliente)
+        if form.is_valid():
+            form.save()
+            return redirect('pasticceria/clienteListar.html')
+    else:
+        form = forms.ClienteAltaForm(instance=cliente)
+    return render(request, 'pasticceria/clienteActualizar.html', {'form':form})
+
+# Borrar cliente
+
 
 
 ## ------- PRODUCTOS -------

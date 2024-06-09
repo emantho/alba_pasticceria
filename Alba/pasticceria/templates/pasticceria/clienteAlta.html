@@ -2,7 +2,7 @@
 {% load static %}
 {% block tittle %}Registro de Clientes{% endblock tittle%} 
 {% block css %}
-<link rel="stylesheet" href="{% static "pasticceria/css/abm_clients.css" %}">
+<link rel="stylesheet" href="{% static "pasticceria/css/clienteAlta.css" %}">
 {% endblock css %} 
 
 <!-- Main Content -->
@@ -12,7 +12,7 @@
     <h2>Formulario de registro de Clientes</h2>
     <p>Por favor complete el formulario con la información requerida</p>
    
-    <form class="form" method="POST" action=" {% url "abm_clients" %} ">
+    <form class="form" method="POST" action=" {% url "clienteAlta" %} ">
         {% csrf_token %}
 
         <fieldset>
