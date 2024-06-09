@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from . import forms
 from .forms import OrdenForm, OrdenItemForm
 from django.contrib import messages
-from .models import Orden, OrdenItem
+from .models import Orden, OrdenItem, Producto, Cliente
 
 
 # Create your views here.
@@ -75,6 +75,8 @@ def cafe(request):
 
     return render(request, "pasticceria/cafe.html", cafeteria)
 
+## ------- PRODUCTOS -------
+# Alta de productos
 def abmProductos(request):
 
     context = {}
@@ -98,6 +100,10 @@ def abmProductos(request):
 
     return render(request, "pasticceria/abmProductos.html", {'form':form})
 
+# Mostrar productos
+
+## ORDEN 
+# crear orden 
 def crear_orden(request):
     if request.method == 'POST':
         orden_form = OrdenForm(request.POST)
@@ -109,6 +115,7 @@ def crear_orden(request):
 
     return render(request, 'pasticceria/crear_orden.html', {'orden_form': orden_form})
 
+# Añadir items a la orden
 def anadir_orden_items(request, orden_id):
     orden = get_object_or_404(Orden, id=orden_id)
     if request.method == 'POST':
@@ -128,6 +135,8 @@ def anadir_orden_items(request, orden_id):
         'orden': orden,
         'orden_items': orden_items
     })
+
+
 
 
 def admin(request):
