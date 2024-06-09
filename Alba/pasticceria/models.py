@@ -65,7 +65,7 @@ class Producto(models.Model):
     codigo = models.IntegerField(verbose_name='Código', unique=True)
     nombre = models.CharField(verbose_name='Nombre', max_length=100)
     descripcion = models.CharField(verbose_name='Descripción', max_length=200)
-    categorias = models.CharField(verbose_name='Categorías', max_length=100, unique=True)
+    categorias = models.CharField(verbose_name='Categorías', max_length=100)
     precio = models.IntegerField(verbose_name='Precio')
     existencias = models.IntegerField(verbose_name='Existencias', null=True)
     
