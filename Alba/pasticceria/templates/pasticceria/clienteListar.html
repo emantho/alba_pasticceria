@@ -1,0 +1,19 @@
+{% extends "pasticceria/base.html" %} 
+{% load static %}
+{% block tittle %}Listado de Clientes{% endblock tittle%} 
+{% block css %}
+<link rel="stylesheet" href="{% static "pasticceria/css/clienteListar.css" %}">
+{% endblock css %} 
+
+<!-- Main Content -->
+{% block main %}
+    <h2>Lista de Clientes</h2>
+    <ul>
+        {% for cliente in clientes %}
+            <li>{{ cliente.nombre }} {{ cliente.apellido }} - 
+                <a href="{% url 'clienteActualizar' cliente.pk %}">Actualizar</a> | 
+                <a href="{% url 'clienteBorrar' cliente.pk %}">Borrar</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock main %}

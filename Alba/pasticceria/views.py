@@ -4,63 +4,93 @@ from .forms import OrdenForm, OrdenItemForm
 from django.contrib import messages
 from .models import Orden, OrdenItem, Producto, Cliente
 
-
 # Create your views here.
 def index(request):
     my_context_var = {
         "userName": "Visitante",
-        # 'dateTime': datetime.datetime.now()
     }
-
     return render(request, "pasticceria/index.html", my_context_var)
 
+## ------- CLIENTES -------
+# Listar clientes
+def clienteListar(request):
+    clientes = Cliente.objects.all()
+    return render(request, "pasticceria/clienteListar.html", {"clientes" : clientes})
 
-def client_list(request):
-
-    my_context = {
-        "names": ["Carlos Perez", "Patricia Fernandez", "Emanuel Manrique"],
-        "payment_status": True,
-    }
-
-    return render(request, "pasticceria/client_list.html", my_context)
-
-
-def abm_clients(request):
-
+# Alta de clientes
+def clienteAlta(request):
     context = {}
-
     # Empty form request
     if request == "GET":
-        context["abm_clients_form"] = forms.AbmClientsForm()
-
+        context["cliente_alta_form"] = forms.ClienteAltaForm()
     else:  # Asummig is a POST
-        form = forms.AbmClientsForm(request.POST)
-        context["abm_clients_form"] = form
-
+        form = forms.ClienteAltaForm(request.POST)
+        context["cliente_alta_form"] = form
         # Form validation
         if form.is_valid():
             # If correct, inform with message and redirect
             messages.success(request, "Cliente creado exitosamente")
             return redirect("index")
-
         # IF NO correct
-        # else:
-            
+        # else:            
         #     messages.error(request, "Existe un error, revise los datos ingresados")
+    return render(request, "pasticceria/clienteAlta.html", {'form':form})
 
-    return render(request, "pasticceria/abm_clients.html", {'form':form})
+# Actualizar cliente
+def clienteActualizar(request, pk):
+    cliente = get_object_or_404(Cliente, pk=pk)
+    if request.method == 'POST':
+        form = forms.ClienteAltaForm(request.POST)
+        if form.is_valid():
+            cliente.nombre = form.cleaned_data['nombre']
+            cliente.apellido = form.cleaned_data['apellido']
+            cliente.dni = form.cleaned_data['dni']
+            cliente.telefono = form.cleaned_data['telefono']
+            cliente.email = form.cleaned_data['email']
+            cliente.direccion = form.cleaned_data['direccion']
+            cliente.ciudad = form.cleaned_data['ciudad']
+            cliente.cumpleaños = form.cleaned_data['cumpleaños']
+            cliente.save()
+            return redirect('clienteListar')
+    else:
+        initial_data = {
+            'nombre': cliente.nombre,
+            'apellido': cliente.apellido,
+            'dni': cliente.dni,
+            'telefono': cliente.telefono,
+            'email': cliente.email,
+            'direccion': cliente.direccion,
+            'ciudad': cliente.ciudad,
+            'cumpleaños': cliente.cumpleaños,
+        }
+        form = forms.ClienteAltaForm(initial=initial_data)
+    return render(request, 'pasticceria/clienteActualizar.html', {'form': form})
 
+# Borrar cliente
+def clienteBorrar(request, pk):
+    cliente = get_object_or_404(Cliente, pk=pk)
+    if request.method == 'POST':
+        cliente.delete()
+        return redirect('clienteListar')
+    return render(request, 'pasticceria/clienteBorrar.html', {'cliente':cliente})
+
+
+## ------- PRODUCTOS -------
+# Listar productos
 def menu(request):
-    pasteleria = {
-        "pasteles": [
-            {"Donut":1.50},
-            {"Cherry Pie":2.75},
-            {"Cheesecake":3.00},
-            {"Cinnamon Roll":2.50},
-            ]
-    }
+    productos = Producto.objects.all()
+    return render(request, "pasticceria/menu.html", {"productos" : productos})
 
-    return render(request, "pasticceria/menu.html", pasteleria)
+# def menu(request):
+#     pasteleria = {
+#         "pasteles": [
+#             {"Donut":1.50},
+#             {"Cherry Pie":2.75},
+#             {"Cheesecake":3.00},
+#             {"Cinnamon Roll":2.50},
+#             ]
+#     }
+#     return render(request, "pasticceria/menu.html", pasteleria)
 
 def cafe(request):
     cafeteria = {
@@ -75,8 +105,8 @@ def cafe(request):
 
     return render(request, "pasticceria/cafe.html", cafeteria)
 
-## ------- PRODUCTOS -------
-# Alta de productos
+
+# Alta productos
 def abmProductos(request):
 
     context = {}
@@ -100,7 +130,25 @@ def abmProductos(request):
 
     return render(request, "pasticceria/abmProductos.html", {'form':form})
 
-# Mostrar productos
+# Actualizar producto
+def productoActualizar(request, pk):
+    cliente = get_object_or_404(Cliente, pk=pk)
+    if request.method == 'POST':
+        form = forms.ClienteAltaForm(request.POST, instance=cliente)
+        if form.is_valid():
+            form.save()
+            return redirect('pasticceria/clienteListar.html')
+    else:
+        form = forms.ClienteAltaForm(instance=cliente)
+    return render(request, 'pasticceria/clienteActualizar.html', {'form':form})
+
+# Borrar producto
+def productoBorrar(request, pk):
+    cliente = get_object_or_404(Cliente, pk=pk)
+    if request.method == 'POST':
+        cliente.delete()
+        return redirect('pasticceria/clienteListar.html')
+    return render(request, 'pasticceria/clienteBorrar.html', {'cliente':cliente})
 
 ## ORDEN 
 # crear orden 

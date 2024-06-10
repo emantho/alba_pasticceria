@@ -47,6 +47,7 @@ class Persona(models.Model):
         abstract = True
     
 class Cliente(Persona):
+    telefono = models.CharField(max_length=15, verbose_name ="Telefono")
     email = models.EmailField(max_length=254, verbose_name="Email", unique= True)
     direccion = models.CharField(max_length=100, verbose_name ="Dirección")
     ciudad = models.CharField(max_length=100, verbose_name="Ciudad")
