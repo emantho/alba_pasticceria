@@ -1,0 +1,16 @@
+{% extends "pasticceria/base.html" %} 
+{% load static %}
+{% block tittle %}Borrar Cliente{% endblock tittle%} 
+{% block css %}
+<link rel="stylesheet" href="{% static "pasticceria/css/clienteBorrar.css" %}">
+{% endblock css %} 
+
+<!-- Main Content -->
+{% block main %}
+    <h2>Are you sure you want to delete {{ cliente.nombre }} {{ cliente.apellido }}?</h2>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Confirm</button>
+        <a href="{% url 'clienteListar' %}">Cancel</a>
+    </form>
+{% endblock main %}

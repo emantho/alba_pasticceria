@@ -13,7 +13,7 @@ class ClienteAltaForm(forms.Form):
     direccion = forms.CharField(label="Dirección",required=True)
     ciudad = forms.CharField(label="Ciudad",required=True)
     anios = range(1900, datetime.datetime.now().year + 1)
-    cumpleanios = forms.DateField(label="Fecha de Nacimiento", widget=forms.SelectDateWidget(years=anios), )
+    cumpleaños = forms.DateField(label="Fecha de Nacimiento", widget=forms.SelectDateWidget(years=anios), )
     
     def clean_firstName(self):
         if not self.cleaned_data["nombre"].isalpha():
