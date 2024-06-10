@@ -20,17 +20,28 @@ def clienteListar(request):
 # Alta de clientes
 def clienteAlta(request):
     context = {}
-    # Empty form request
+    # crear un formulario en blanco
     if request == "GET":
         context["cliente_alta_form"] = forms.ClienteAltaForm()
-    else:  # Asummig is a POST
+    else:  
         form = forms.ClienteAltaForm(request.POST)
         context["cliente_alta_form"] = form
-        # Form validation
+        # Validación de Formulario
         if form.is_valid():
-            # If correct, inform with message and redirect
+            # SI correcto, guardar en DB, mostrar mensaje y redirigir
+            cliente = Cliente(
+                nombre = form.cleaned_data['nombre'],
+                apellido = form.cleaned_data['apellido'],
+                dni = form.cleaned_data['dni'],
+                telefono = form.cleaned_data['telefono'],
+                email = form.cleaned_data['email'],
+                direccion = form.cleaned_data['direccion'],
+                ciudad = form.cleaned_data['ciudad'],
+                cumpleaños = form.cleaned_data['cumpleaños']
+                )
+            cliente.save()
             messages.success(request, "Cliente creado exitosamente")
-            return redirect("index")
+            return redirect('clienteListar')
         # IF NO correct
         # else:            
         #     messages.error(request, "Existe un error, revise los datos ingresados")

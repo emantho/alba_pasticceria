@@ -12,8 +12,8 @@ class ClienteAltaForm(forms.Form):
     email = forms.EmailField(label="Email",required=True)
     direccion = forms.CharField(label="Dirección",required=True)
     ciudad = forms.CharField(label="Ciudad",required=True)
-    anios = range(1900, datetime.datetime.now().year + 1)
-    cumpleaños = forms.DateField(label="Fecha de Nacimiento", widget=forms.SelectDateWidget(years=anios), )
+    años = range(1900, datetime.datetime.now().year + 1)
+    cumpleaños = forms.DateField(label="Fecha de Nacimiento", widget=forms.SelectDateWidget(years=años))
     
     def clean_firstName(self):
         if not self.cleaned_data["nombre"].isalpha():
@@ -29,11 +29,7 @@ class ClienteAltaForm(forms.Form):
     
     def clean(self):
         cleaned_data = super().clean()
-        nombre = cleaned_data.get("nombre")
-        apellido = cleaned_data.get("apellido")
-        if nombre == "Carlos" and apellido == "Lopez":
-            raise ValidationError("El Cliente ya existe en el sistema")
-        
+        # crear validaciones
         return cleaned_data
 
 
