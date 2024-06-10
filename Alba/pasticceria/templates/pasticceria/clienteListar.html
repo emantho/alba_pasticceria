@@ -7,13 +7,25 @@
 
 <!-- Main Content -->
 {% block main %}
-    <h2>Lista de Clientes</h2>
-    <ul>
-        {% for cliente in clientes %}
-            <li>{{ cliente.nombre }} {{ cliente.apellido }} - 
-                <a href="{% url 'clienteActualizar' cliente.pk %}">Actualizar</a> | 
-                <a href="{% url 'clienteBorrar' cliente.pk %}">Borrar</a>
-            </li>
-        {% endfor %}
-    </ul>
+    <div class="main_div">
+        <h2>Listado de Clientes</h2>
+        
+        <div class="clientes-crear">
+            <a href="{% url 'clienteAlta' %}">Nuevo cliente</a>
+        </div>
+        
+        <div class="clientes-lista">
+            <br>
+            <ul>
+                {% for cliente in clientes %}
+                <li>{{cliente.dni}} - {{ cliente.nombre }} {{ cliente.apellido }}
+                    <div class="actualizar-borrar">
+                        <a href="{% url 'clienteActualizar' cliente.pk %}">Actualizar</a> |
+                        <a href="{% url 'clienteBorrar' cliente.pk %}">Borrar</a>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 {% endblock main %}
