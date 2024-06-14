@@ -25,21 +25,21 @@
                     <li class="nav-item">
                         <a class="nav-link" href=" {% url 'crear_orden' %} ">Nueva Orden</a>
                     </li>
-                    <li class="nav-item">
+                    {% comment %} <li class="nav-item">
                         <a class="nav-link" href=" {% url 'menu' %} ">Pastelería</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href=" {% url 'cafe' %} ">Cafetería</a>
-                    </li>
+                    </li> {% endcomment %}
                     <li class="nav-item">
                         <a class="nav-link" href=" {% url 'clienteListar' %} ">Clientes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href=" {% url 'abmProductos' %} ">Alta Productos</a>
+                        <a class="nav-link" href=" {% url 'productoListar' %} ">Productos</a>
                     </li>
-                    <li class="nav-item">
+                    {% comment %} <li class="nav-item">
                         <a class="nav-link" href=" {% url 'admin' %} ">Admin</a>
-                    </li>
+                    </li> {% endcomment %}
                 </ul>
             </div>
         </nav>
@@ -92,10 +92,10 @@
                     <span class="footer-title">Secciones</span>
                     <div class="footer-section">
                         <a class="footer-link" rel="noopener noreferrer" href=" {% url 'crear_orden' %} ">Nueva Orden</a>
-                        <a class="footer-link" rel="noopener noreferrer" href=" {% url 'menu' %} ">Pasteleria</a>
-                        <a class="footer-link" rel="noopener noreferrer" href=" {% url 'cafe' %} ">Cafetería</a>
+                        {% comment %} <a class="footer-link" rel="noopener noreferrer" href=" {% url 'menu' %} ">Pasteleria</a>
+                        <a class="footer-link" rel="noopener noreferrer" href=" {% url 'cafe' %} ">Cafetería</a> {% endcomment %}
                         <a class="footer-link" rel="noopener noreferrer" href=" {% url 'clienteListar' %} ">Clientes</a>
-                        <a class="footer-link" rel="noopener noreferrer" href=" {% url 'abmProductos' %} ">Alta Productos</a>
+                        <a class="footer-link" rel="noopener noreferrer" href=" {% url 'productoListar' %} ">Productos</a>
                     </div>
                 </div>
                 <div class="footer-column">
