@@ -1,0 +1,22 @@
+{% extends "pasticceria/base.html" %}
+{% load static %}
+{% block tittle %}{% endblock tittle %}
+{% block css %}
+<link rel="stylesheet" href="{% static "pasticceria/css/productoListar.css" %}">
+{% endblock css %}
+
+{% block main %}
+    <h2>Lista de Productos</h2>
+    <a href="{% url 'productoAlta' %}" class="btn btn-primary">Nuevo Producto</a>
+    <section>
+        {% for producto in productos %}
+        <article>
+            <p>{{ producto.nombre }}</p>
+            <p>{{ producto.descripcion }}</p>
+            <p>{{ producto.precio }}</p>
+            <a href="{% url 'productoActualizar' producto.pk %}" class="btn btn-secondary">Editar</a>
+            <a href="{% url 'productoBorrar' producto.pk %}" class="btn btn-danger">Eliminar</a>
+        </article>
+        {% endfor %}
+    </section>
+{% endblock main %}

@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from . import forms
-from .forms import OrdenForm, OrdenItemForm
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib import messages
+from django.urls import reverse_lazy
+from .models import Producto
 from .models import Orden, OrdenItem, Producto, Cliente
+from . import forms
+from .forms import OrdenForm, OrdenItemForm, ProductosForm
 
 # Create your views here.
 def index(request):
@@ -87,21 +90,16 @@ def clienteBorrar(request, pk):
 
 
 ## ------- PRODUCTOS -------
-# Listar productos
+# ____ productos Listar ____
+class ProductoListView(ListView):
+    model = Producto
+    context_object_name = "productos"
+    template_name = "pasticceria/productoListar.html"
+    ordering = ["codigo"]
+
 def menu(request):
     productos = Producto.objects.all()
     return render(request, "pasticceria/menu.html", {"productos" : productos})
-
-# def menu(request):
-#     pasteleria = {
-#         "pasteles": [
-#             {"Donut":1.50},
-#             {"Cherry Pie":2.75},
-#             {"Cheesecake":3.00},
-#             {"Cinnamon Roll":2.50},
-#             ]
-#     }
-#     return render(request, "pasticceria/menu.html", pasteleria)
 
 def cafe(request):
     cafeteria = {
@@ -116,53 +114,29 @@ def cafe(request):
 
     return render(request, "pasticceria/cafe.html", cafeteria)
 
+# ____ productos Alta ____
+class ProductoCreateView(CreateView):
+    model = Producto
+    form_class = ProductosForm
+    template_name = "pasticceria/productoAlta.html"
+    success_url = reverse_lazy('productoListar')
 
-# Alta productos
-def abmProductos(request):
+# ____ productos Actualizar ____
+class ProductoUpdateView(UpdateView):
+    model = Producto
+    form_class = ProductosForm
+    template_name = "pasticceria/productoAlta.html"
+    success_url = reverse_lazy('productoListar')
 
-    context = {}
+# ____ productos Borrar ____
+class ProductoDeleteView(DeleteView):
+    model = Producto
+    template_name = "pasticceria/productoBorrar.html"
+    success_url = reverse_lazy('productoListar')
 
-    # Empty form request
-    if request == "GET":
-        context["abmProductos_form"] = forms.AbmProductosForm()
 
-    else:  # Asummig is a POST
-        form = forms.AbmProductosForm(request.POST)
-        context["abmProductos_form"] = form
-
-        # Form validation
-        if form.is_valid():
-            # If correct, inform with message and redirect
-            messages.success(request, "Producto creado exitosamente")
-            return redirect("index")
-
-        # IF NO correct
-        # Saty in form but showing an error
-
-    return render(request, "pasticceria/abmProductos.html", {'form':form})
-
-# Actualizar producto
-def productoActualizar(request, pk):
-    cliente = get_object_or_404(Cliente, pk=pk)
-    if request.method == 'POST':
-        form = forms.ClienteAltaForm(request.POST, instance=cliente)
-        if form.is_valid():
-            form.save()
-            return redirect('pasticceria/clienteListar.html')
-    else:
-        form = forms.ClienteAltaForm(instance=cliente)
-    return render(request, 'pasticceria/clienteActualizar.html', {'form':form})
-
-# Borrar producto
-def productoBorrar(request, pk):
-    cliente = get_object_or_404(Cliente, pk=pk)
-    if request.method == 'POST':
-        cliente.delete()
-        return redirect('pasticceria/clienteListar.html')
-    return render(request, 'pasticceria/clienteBorrar.html', {'cliente':cliente})
-
-## ORDEN 
-# crear orden 
+## ------- ORDEN -------  
+# ____ orden crear ____  
 def crear_orden(request):
     if request.method == 'POST':
         orden_form = OrdenForm(request.POST)
@@ -174,7 +148,7 @@ def crear_orden(request):
 
     return render(request, 'pasticceria/crear_orden.html', {'orden_form': orden_form})
 
-# Añadir items a la orden
+# ____ Añadir items a la orden ____ 
 def anadir_orden_items(request, orden_id):
     orden = get_object_or_404(Orden, id=orden_id)
     if request.method == 'POST':
