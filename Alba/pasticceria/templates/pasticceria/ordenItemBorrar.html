@@ -1,0 +1,18 @@
+{% extends "pasticceria/base.html" %}
+{% load static %}
+{% block tittle %}Borrar Item{% endblock tittle%}
+{% block css %}
+<link rel="stylesheet" href="{% static "pasticceria/css/ordenItemBorrar.css" %}">
+{% endblock css %}
+
+{% block main %}
+
+    <h1>Borrar Item de la Orden</h1>
+    <p>¿Está seguro que desea borrar el item "{{ orden_item.producto.nombre }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Borrar</button>
+    </form>
+    <a href="{% url 'anadir_orden_items' orden.id %}">Cancelar</a>
+
+{% endblock main %}

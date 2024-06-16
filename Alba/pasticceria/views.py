@@ -166,20 +166,43 @@ def anadir_orden_items(request, orden_id):
         orden_item_form = OrdenItemForm()
 
     orden_items = OrdenItem.objects.filter(orden=orden)
+    valoresTotales = [item.total for item in orden_items]
 
     return render(request, 'pasticceria/anadir_orden_items.html', {
         'orden_item_form': orden_item_form,
         'orden': orden,
-        'orden_items': orden_items
+        'orden_items': orden_items,
+        'valoresTotales': valoresTotales
     })
 
 # ____ Editar item en orden ____ 
-def ordenItemEditar(request, orden_id):
-    pass
+def ordenItemEditar(request, orden_id, item_id):
+    orden = get_object_or_404(Orden, id=orden_id)
+    orden_item = get_object_or_404(OrdenItem, id=item_id, orden=orden)
+    if request.method == 'POST':
+        orden_item_form = OrdenItemForm(request.POST, instance=orden_item)
+        if orden_item_form.is_valid():
+            orden_item_form.save()
+            return redirect('anadir_orden_items', orden_id=orden.id)
+    else:
+        orden_item_form = OrdenItemForm(instance=orden_item)
+    return render(request, 'pasticceria/ordenItemEditar.html', {
+        'orden_item_form': orden_item_form,
+        'orden': orden,
+        'orden_item': orden_item
+    })
 
 # ____ Borrar item de orden ____ 
-def ordenItemBorrar(request, orden_id):
-    pass
+def ordenItemBorrar(request, orden_id, item_id):
+    orden = get_object_or_404(Orden, id=orden_id)
+    orden_item = get_object_or_404(OrdenItem, id=item_id, orden=orden)
+    if request.method == 'POST':
+        orden_item.delete()
+        return redirect('anadir_orden_items', orden_id=orden.id)
+    return render(request, 'pasticceria/ordenItemBorrar.html', {
+        'orden_item': orden_item,
+        'orden': orden
+    })
 
 
 ## ------- ADMIN ---------------------------------------------------------------  

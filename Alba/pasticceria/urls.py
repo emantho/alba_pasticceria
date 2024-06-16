@@ -13,6 +13,8 @@ urlpatterns = [
     path('admin', views.admin, name='admin'),
     path('crear_orden/', views.crear_orden, name='crear_orden'),
     path('anadir_orden_items/<int:orden_id>/', views.anadir_orden_items, name='anadir_orden_items'),
+    path('ordenItemEditar/<int:orden_id> <int:item_id>/', views.ordenItemEditar, name='ordenItemEditar'),
+    path('ordenItemBorrar/<int:orden_id> <int:item_id>/', views.ordenItemBorrar, name='ordenItemBorrar'),
     
     path('productoAlta', views.ProductoCreateView.as_view(), name='productoAlta'),
     path('productoListar', views.ProductoListView.as_view(), name='productoListar'),
