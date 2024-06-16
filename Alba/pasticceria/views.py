@@ -14,7 +14,7 @@ def index(request):
     }
     return render(request, "pasticceria/index.html", my_context_var)
 
-## ------- CLIENTES -------
+## ------- CLIENTES --------------------------------------------------------
 # Listar clientes
 def clienteListar(request):
     clientes = Cliente.objects.all()
@@ -89,7 +89,7 @@ def clienteBorrar(request, pk):
     return render(request, 'pasticceria/clienteBorrar.html', {'cliente':cliente})
 
 
-## ------- PRODUCTOS -------
+## ------- PRODUCTOS ----------------------------------------------------------------------
 # ____ productos Listar ____
 class ProductoListView(ListView):
     model = Producto
@@ -97,22 +97,22 @@ class ProductoListView(ListView):
     template_name = "pasticceria/productoListar.html"
     ordering = ["codigo"]
 
-def menu(request):
-    productos = Producto.objects.all()
-    return render(request, "pasticceria/menu.html", {"productos" : productos})
+# def menu(request):
+#     productos = Producto.objects.all()
+#     return render(request, "pasticceria/menu.html", {"productos" : productos})
 
-def cafe(request):
-    cafeteria = {
-        "cafes": [
-            {"French Vanilla":3.00},
-            {"Caramel Macchiato":3.75},
-            {"Pumpkin Spice":3.50},
-            {"Hazelnut":4.00},
-            {"Mocha":4.50}
-            ]
-    }
+# def cafe(request):
+#     cafeteria = {
+#         "cafes": [
+#             {"French Vanilla":3.00},
+#             {"Caramel Macchiato":3.75},
+#             {"Pumpkin Spice":3.50},
+#             {"Hazelnut":4.00},
+#             {"Mocha":4.50}
+#             ]
+#     }
 
-    return render(request, "pasticceria/cafe.html", cafeteria)
+#     return render(request, "pasticceria/cafe.html", cafeteria)
 
 # ____ productos Alta ____
 class ProductoCreateView(CreateView):
@@ -135,7 +135,7 @@ class ProductoDeleteView(DeleteView):
     success_url = reverse_lazy('productoListar')
 
 
-## ------- ORDEN -------  
+## ------- ORDEN ---------------------------------------------------------------  
 # ____ orden crear ____  
 def crear_orden(request):
     if request.method == 'POST':
@@ -147,6 +147,10 @@ def crear_orden(request):
         orden_form = OrdenForm()
 
     return render(request, 'pasticceria/crear_orden.html', {'orden_form': orden_form})
+
+# ____ orden cancelar ____  
+def ordenCancelar(request):
+    pass
 
 # ____ Añadir items a la orden ____ 
 def anadir_orden_items(request, orden_id):
@@ -169,8 +173,16 @@ def anadir_orden_items(request, orden_id):
         'orden_items': orden_items
     })
 
+# ____ Editar item en orden ____ 
+def ordenItemEditar(request, orden_id):
+    pass
+
+# ____ Borrar item de orden ____ 
+def ordenItemBorrar(request, orden_id):
+    pass
 
 
+## ------- ADMIN ---------------------------------------------------------------  
 
 def admin(request):
     my_context = {
