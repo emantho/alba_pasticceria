@@ -41,13 +41,20 @@
                 <tr>
                     <th>Cantidad</th>
                     <th>Producto</th>
-                    <th>Precio</th>
+                    <th>Precio x unidad</th>
+                    <th>Total</th>
+                    <th>Acciones</th>
                 </tr>
                 {% for item in orden_items %}
                 <tr>
                     <td>{{ item.cantidad }}</td>
                     <td>{{ item.producto.nombre }}</td>
                     <td>${{ item.producto.precio }}</td>
+                    <td>${{ item.total }}</td>
+                    <td>
+                        <a href="{% url 'ordenItemEditar' orden.id item.id %}">Editar</a>
+                        <a href="{% url 'ordenItemBorrar' orden.id item.id %}">Borrar</a>
+                    </td>
                 </tr>
                 {% endfor %}
 

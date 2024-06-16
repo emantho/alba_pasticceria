@@ -1,0 +1,18 @@
+{% extends "pasticceria/base.html" %}
+{% load static %}
+{% block tittle %}Editar Item{% endblock tittle%}
+{% block css %}
+<link rel="stylesheet" href="{% static "pasticceria/css/ordenItemEditar.css" %}">
+{% endblock css %}
+
+{% block main %}
+
+    <h1>Editar Item en la Orden</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ orden_item_form.as_p }}
+        <button type="submit">Guardar Cambios</button>
+    </form>
+    <a href="{% url 'anadir_orden_items' orden.id %}">Cancelar</a>
+
+{% endblock main %}

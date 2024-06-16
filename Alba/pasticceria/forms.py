@@ -112,3 +112,13 @@ class OrdenItemForm(forms.ModelForm):
     class Meta:
         model = OrdenItem
         fields = ['producto', 'cantidad']
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        producto = cleaned_data.get('producto')
+        cantidad = cleaned_data.get('cantidad')
+        if producto and cantidad:
+            cleaned_data['total'] = 100
+            return cleaned_data
+
+
