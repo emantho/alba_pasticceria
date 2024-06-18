@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib import messages
+from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import reverse_lazy
-from .models import Producto
 from .models import Orden, OrdenItem, Producto, Cliente
 from . import forms
 from .forms import OrdenForm, OrdenItemForm, ProductosForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -205,11 +206,25 @@ def ordenItemBorrar(request, orden_id, item_id):
     })
 
 
-## ------- ADMIN ---------------------------------------------------------------  
+## ------- LOGIN / LOGOUT---------------------------------------------------------------  
 
-def admin(request):
-    my_context = {
-        "mensaje": "Vista para admin"
-    }
+def home(request):
+    return render(request, "pasticceria/index.html")
 
-    return render(request, "pasticceria/admin.html", my_context)
+@login_required
+def restricted(request):
+    return render(request, 'restricted.html')
+
+class CustomLoginView(LoginView):
+    template_name = 'registration/login.html'
+
+    def form_valid(self, form):
+        messages.success(self.request, 'You have successfully logged in.')
+        return super().form_valid(form)
+
+class CustomLogoutView(LogoutView):
+    next_page = reverse_lazy('index')
+
+    def dispatch(self, request, *args, **kwargs):
+        messages.success(self.request, 'You have successfully logged out.')
+        return super().dispatch(request, *args, **kwargs)

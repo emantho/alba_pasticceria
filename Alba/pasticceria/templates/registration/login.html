@@ -1,0 +1,17 @@
+{% extends "pasticceria/base.html" %}
+{% load static %}
+{% block tittle %}Borrar Item{% endblock tittle%}
+{% block css %}
+<link rel="stylesheet" href="{% static "pasticceria/css/login.css" %}">
+{% endblock css %}
+
+{% block main %}
+
+    <h2>Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+    </form>
+
+{% endblock main %}

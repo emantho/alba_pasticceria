@@ -37,9 +37,16 @@
                     <li class="nav-item">
                         <a class="nav-link" href=" {% url 'productoListar' %} ">Productos</a>
                     </li>
-                    {% comment %} <li class="nav-item">
-                        <a class="nav-link" href=" {% url 'admin' %} ">Admin</a>
-                    </li> {% endcomment %}
+                    {% if user.is_authenticated %}
+                        <form method="post" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button type="submit">Logout</button>
+                        </form>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href=" {% url 'login' %} ">Login</a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>
@@ -47,18 +54,27 @@
 
     <!-- Main -->
     <main class="main">
-        <div class="main-message">
+        {% comment %} <div class="main-message"> {% endcomment %}
         {% comment %} Strcuture for in screen messages {% endcomment %}
-        {% if messages %}
+        {% comment %} {% if messages %}
             <ul class="messages">
                 {% for message in messages %}
                 <li {% if message.tags %} class="{{message.tags}}"{% endif %}>{{message}}</li>
                 {% endfor %}
             </ul>
         {% endif %}
-        </div>
+        </div> {% endcomment %}
+        {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
         <div class="main-div">
-        {% block main %}{% endblock main %}
+        {% block main %}
+        
+        {% endblock main %}
         </div>
     </main>
 

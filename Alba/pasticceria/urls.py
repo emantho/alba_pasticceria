@@ -1,7 +1,8 @@
+from django.contrib import admin
 from django.urls import path, include
 from . import views
 
-urlpatterns = [
+urlpatterns = [  
     path('',views.index, name='index'),
     path('clienteAlta', views.clienteAlta, name='clienteAlta'),
     path('clienteListar', views.clienteListar, name='clienteListar'),
@@ -10,7 +11,7 @@ urlpatterns = [
     # path('menu', views.menu, name='menu'),
     # path('cafe', views.cafe, name='cafe'),
     # path('abmProductos', views.abmProductos, name='abmProductos'),
-    path('admin', views.admin, name='admin'),
+    # path('admin', views.admin, name='admin'),
     path('crear_orden/', views.crear_orden, name='crear_orden'),
     path('anadir_orden_items/<int:orden_id>/', views.anadir_orden_items, name='anadir_orden_items'),
     path('ordenItemEditar/<int:orden_id> <int:item_id>/', views.ordenItemEditar, name='ordenItemEditar'),
@@ -20,4 +21,6 @@ urlpatterns = [
     path('productoListar', views.ProductoListView.as_view(), name='productoListar'),
     path('productoAlta/<int:pk>', views.ProductoUpdateView.as_view(), name='productoActualizar'),
     path('productoBorrar/<int:pk>', views.ProductoDeleteView.as_view(), name='productoBorrar'),
+    
+    path('restricted/', views.restricted, name='restricted'),
 ]

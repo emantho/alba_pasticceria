@@ -11,9 +11,23 @@
   <div class="row">
     <div class="col-md-12">
       <!-- Add your main content here -->
-      <h1>Bienvenido {{ userName }} a ALBA Pasticceria</h1>
+      {% if user.is_authenticated %}
+        <h1>Bienvenido(a) {{ user.username }} a ALBA Pasticceria</h1>
+      {% else %}
+        <h1>Bienvenido(a) Invitado a ALBA Pasticceria</h1>
+      {% endif %}
       <p>Esta vista tendrá imagenes o videos de novedades de productos y eventos.</p>
       {% comment %} <img src="{% static "pasticceria/media/images/alba_logo.jpeg" %}" alt="Logo de empresa" width="200" height="200"> {% endcomment %}
+      {% comment %} <h2>Home Page</h2>
+      <p><a href="{% url 'restricted' %}">Restricted Page</a></p>
+      {% if user.is_authenticated %}
+        <form method="post" action="{% url 'logout' %}">
+          {% csrf_token %}
+          <button type="submit">Logout</button>
+        </form>
+      {% else %}
+        <p><a href="{% url 'login' %}">Login</a></p>
+      {% endif %} {% endcomment %}
     </div>
   </div>
 </div>

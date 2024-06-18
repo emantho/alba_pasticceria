@@ -18,8 +18,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from pasticceria import views
+from django.contrib.auth import views as auth_views
+from pasticceria.views import CustomLoginView, CustomLogoutView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include('pasticceria.urls'))
+    path("", include('pasticceria.urls')),
+    # path("login/", auth_views.LoginView.as_view(), name="login"),
+    # path("logout/", auth_views.LogoutView.as_view(), name="logout"),
+    path('login/', CustomLoginView.as_view(), name='login'),
+    path('logout/', CustomLogoutView.as_view(), name='logout'),
+    
 ]
