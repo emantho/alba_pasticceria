@@ -10,10 +10,11 @@
     <div class="main_div">
         <h2>Listado de Clientes</h2>
         
+        {% if perms.pasticceria.add_cliente %}
         <div class="clientes-crear">
             <a href="{% url 'clienteAlta' %}">Nuevo cliente</a>
         </div>
-        
+        {% endif %}
         <div class="clientes-lista">
             <br>
             <ul>
