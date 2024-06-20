@@ -14,26 +14,33 @@ class ClienteAltaForm(forms.Form):
     ciudad = forms.CharField(label="Ciudad",required=True)
     años = range(1900, datetime.datetime.now().year + 1)
     cumpleaños = forms.DateField(label="Fecha de Nacimiento", widget=forms.SelectDateWidget(years=años))
-    
+
     def clean_firstName(self):
         if not self.cleaned_data["nombre"].isalpha():
             raise ValidationError("El nombre solo puede contener letras")            
-        
+
         return self.cleaned_data["nombre"]
-    
+
     def clean_lastName(self):
         if not self.cleaned_data["apellido"].isalpha():
             raise ValidationError("El apellido solo puede contener letras")            
-        
+
         return self.cleaned_data["apellido"]
-    
+
     def clean(self):
         cleaned_data = super().clean()
         # crear validaciones
         return cleaned_data
 
+
 class ProductosForm(forms.ModelForm):
-    listaCategorias = [(1,"Cafeteria"),(2,"Postres"),(3,"Tortas"),(4,"Bebidas Calientes"),(5,"Bebidas Frias")]
+    listaCategorias = [
+        (1, "Cafeteria"),
+        (2, "Postres"),
+        (3, "Tortas"),
+        (4, "Bebidas Calientes"),
+        (5, "Bebidas Frias")
+    ]
     categorias = forms.ChoiceField(choices=listaCategorias)
 
     class Meta:
@@ -47,18 +54,18 @@ class ProductosForm(forms.ModelForm):
             "existencias",
         ]
         labels = {
-            "codigo":"Código",
-            "nombre":"Nombre",
-            "descripcion":"Descripción",
-            "precio":"Precio",
-            "existencias":"Existencias",
+            "codigo": "Código",
+            "nombre": "Nombre",
+            "descripcion": "Descripción",
+            "precio": "Precio",
+            "existencias": "Existencias",
         }
-    
-    def clean_nombreProducto(self):
-        if not self.cleaned_data["nombreProducto"].isalpha():
+
+    def clean_nombre(self):
+        nombre = self.cleaned_data.get("nombre")
+        if not nombre.isalpha():
             raise ValidationError("Name can only contains letters")
-    
-        return self.cleaned_data["nombreProducto"]
+        return nombre
 
     def clean_existencias(self):
         existencias = self.cleaned_data.get("existencias")
@@ -120,5 +127,3 @@ class OrdenItemForm(forms.ModelForm):
         if producto and cantidad:
             cleaned_data['total'] = 100
             return cleaned_data
-
-

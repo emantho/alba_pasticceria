@@ -22,21 +22,19 @@
             </div>
             <div class="navbarNav">
                 <ul class="navbarnav-list">
-                    <li class="nav-item">
-                        <a class="nav-link" href=" {% url 'crear_orden' %} ">Nueva Orden</a>
-                    </li>
-                    {% comment %} <li class="nav-item">
-                        <a class="nav-link" href=" {% url 'menu' %} ">Pastelería</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href=" {% url 'cafe' %} ">Cafetería</a>
-                    </li> {% endcomment %}
-                    <li class="nav-item">
-                        <a class="nav-link" href=" {% url 'clienteListar' %} ">Clientes</a>
-                    </li>
+                    {% if perms.pasticceria.add_order %}
+                        <li class="nav-item">
+                            <a class="nav-link" href=" {% url 'crear_orden' %} ">Nueva Orden</a>
+                        </li>
+                    {% endif %}
                     <li class="nav-item">
                         <a class="nav-link" href=" {% url 'productoListar' %} ">Productos</a>
                     </li>
+                    {% if perms.pasticceria.view_producto %}
+                        <li class="nav-item">
+                            <a class="nav-link" href=" {% url 'clienteListar' %} ">Clientes</a>
+                        </li>
+                    {% endif %}
                     {% if user.is_authenticated %}
                         <form method="post" action="{% url 'logout' %}">
                             {% csrf_token %}
@@ -54,16 +52,6 @@
 
     <!-- Main -->
     <main class="main">
-        {% comment %} <div class="main-message"> {% endcomment %}
-        {% comment %} Strcuture for in screen messages {% endcomment %}
-        {% comment %} {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                <li {% if message.tags %} class="{{message.tags}}"{% endif %}>{{message}}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-        </div> {% endcomment %}
         {% if messages %}
     <ul class="messages">
         {% for message in messages %}
@@ -107,10 +95,12 @@
                 <div class="footer-column">
                     <span class="footer-title">Secciones</span>
                     <div class="footer-section">
+                    {% if perms.pasticceria.add_order %}
                         <a class="footer-link" rel="noopener noreferrer" href=" {% url 'crear_orden' %} ">Nueva Orden</a>
-                        {% comment %} <a class="footer-link" rel="noopener noreferrer" href=" {% url 'menu' %} ">Pasteleria</a>
-                        <a class="footer-link" rel="noopener noreferrer" href=" {% url 'cafe' %} ">Cafetería</a> {% endcomment %}
+                    {% endif %}
+                    {% if perms.pasticceria.view_producto %}
                         <a class="footer-link" rel="noopener noreferrer" href=" {% url 'clienteListar' %} ">Clientes</a>
+                        {% endif %}
                         <a class="footer-link" rel="noopener noreferrer" href=" {% url 'productoListar' %} ">Productos</a>
                     </div>
                 </div>

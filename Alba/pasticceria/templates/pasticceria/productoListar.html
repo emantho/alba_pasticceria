@@ -5,18 +5,40 @@
 <link rel="stylesheet" href="{% static "pasticceria/css/productoListar.css" %}">
 {% endblock css %}
 
+<!-- Main Content -->
 {% block main %}
-    <h2>Lista de Productos</h2>
-    <a href="{% url 'productoAlta' %}" class="btn btn-primary">Nuevo Producto</a>
-    <section>
-        {% for producto in productos %}
-        <article>
-            <p>{{ producto.nombre }}</p>
-            <p>{{ producto.descripcion }}</p>
-            <p>{{ producto.precio }}</p>
-            <a href="{% url 'productoActualizar' producto.pk %}" class="btn btn-secondary">Editar</a>
-            <a href="{% url 'productoBorrar' producto.pk %}" class="btn btn-danger">Eliminar</a>
-        </article>
-        {% endfor %}
-    </section>
+    <div class="main_div">
+        <h2>Lista de Productos</h2>
+    
+        {% if perms.pasticceria.add_producto %}
+        <div class="clientes-crear">
+            <a href="{% url 'productoAlta' %}" class="btn btn-primary">Nuevo Producto</a>
+        </div>
+        {% endif %}
+        <div class="productos-lista">
+            <br>
+    
+            <ul>
+                {% for producto in productos %}
+                <li>
+                    <div class="producto">
+                        <div class="producto-item">
+                        <span class="nombre">{{ producto.nombre }}</span>
+                        <span class="precio">$ {{ producto.precio }}</span>
+                        </div>
+                        <div class="descripcion">{{ producto.descripcion }}</div>
+                    </div>
+                    <div class="actualizar-borrar">
+                        {% if perms.pasticceria.change_producto %}
+                        <a href="{% url 'productoActualizar' producto.pk %}" class="btn btn-secondary">Editar</a>
+                        {% endif %}
+                        {% if perms.pasticceria.delete_producto %}
+                        <a href="{% url 'productoBorrar' producto.pk %}" class="btn btn-danger">Eliminar</a>
+                        {% endif %}
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 {% endblock main %}

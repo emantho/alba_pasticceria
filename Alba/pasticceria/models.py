@@ -67,7 +67,7 @@ class Producto(models.Model):
     nombre = models.CharField(verbose_name='Nombre', max_length=100)
     descripcion = models.CharField(verbose_name='Descripción', max_length=200)
     categorias = models.CharField(verbose_name='Categorías', max_length=100)
-    precio = models.IntegerField(verbose_name='Precio')
+    precio = models.DecimalField(verbose_name='Precio', max_digits=10, decimal_places=2)
     existencias = models.IntegerField(verbose_name='Existencias', null=True)
     
     def __str__(self):

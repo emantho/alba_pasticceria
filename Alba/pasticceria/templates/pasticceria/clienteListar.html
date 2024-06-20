@@ -9,20 +9,28 @@
 {% block main %}
     <div class="main_div">
         <h2>Listado de Clientes</h2>
-        
+    
         {% if perms.pasticceria.add_cliente %}
         <div class="clientes-crear">
-            <a href="{% url 'clienteAlta' %}">Nuevo cliente</a>
+            <a href="{% url 'clienteAlta' %}" class="btn btn-primary">Nuevo cliente</a>
         </div>
         {% endif %}
         <div class="clientes-lista">
             <br>
+    
             <ul>
                 {% for cliente in clientes %}
-                <li>{{cliente.dni}} - {{ cliente.nombre }} {{ cliente.apellido }}
+                <li>
+                    <div class="cliente">
+                        {{cliente.dni}} - {{ cliente.nombre }} {{ cliente.apellido }}
+                    </div>
                     <div class="actualizar-borrar">
-                        <a href="{% url 'clienteActualizar' cliente.pk %}">Actualizar</a> |
-                        <a href="{% url 'clienteBorrar' cliente.pk %}">Borrar</a>
+                        {% if perms.pasticceria.change_cliente %}
+                        <a href="{% url 'clienteActualizar' cliente.pk %}" class="btn btn-secondary">Actualizar</a>
+                        {% endif %}
+                        {% if perms.pasticceria.delete_cliente %}
+                        <a href="{% url 'clienteBorrar' cliente.pk %}" class="btn btn-danger">Borrar</a>
+                        {% endif %}
                     </div>
                 </li>
                 {% endfor %}
