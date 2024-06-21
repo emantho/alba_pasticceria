@@ -9,54 +9,57 @@
 {% block main %}
 
     <div class="main_div">
-    <h2>Formulario de registro de Clientes</h2>
-    <p>Por favor complete el formulario con la información requerida</p>
-   
-    <form class="form" method="POST" action=" {% url "clienteAlta" %} ">
-        {% csrf_token %}
+        <h2>Formulario de registro de Clientes</h2>
+        <p>Por favor complete el formulario con la información requerida</p>
+        
+        <form class="form" method="POST" action=" {% url "clienteAlta" %} ">
+            {% csrf_token %}
 
-        <fieldset>
-            <div class="form-group">
-                <div class="form-item">
-                {{ form.nombre.label_tag }} {{ form.nombre }} 
+            <fieldset>
+                <div class="form-group">
+                    <div class="form-item">
+                    {{ form.nombre.label_tag }} {{ form.nombre }} 
+                    </div>
+                    <div class="form-item">
+                    {{ form.apellido.label_tag }} {{ form.apellido }} 
+                    </div>
                 </div>
-                <div class="form-item">
-                {{ form.apellido.label_tag }} {{ form.apellido }} 
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <div class="form-item">
+                        {{ form.dni.label_tag }} {{ form.dni }} 
+                    </div>
+                    <div class="form-item">
+                        {{ form.email.label_tag }} {{ form.email }} 
+                    </div>
                 </div>
-            </div>
-        </fieldset>
-        <fieldset>
-            <div class="form-group">
-                <div class="form-item">
-                    {{ form.dni.label_tag }} {{ form.dni }} 
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <div class="form-item">
+                {{ form.telefono.label_tag }} {{ form.telefono }} 
                 </div>
-                <div class="form-item">
-                    {{ form.email.label_tag }} {{ form.email }} 
+                    <div class="form-item">
+                {{ form.direccion.label_tag }} {{ form.direccion }} 
                 </div>
-            </div>
-        </fieldset>
-        <fieldset>
-            <div class="form-group">
-                <div class="form-item">
-            {{ form.telefono.label_tag }} {{ form.telefono }} 
-            </div>
-                <div class="form-item">
-            {{ form.direccion.label_tag }} {{ form.direccion }} 
-            </div>
-        </fieldset>
-        <fieldset>
-            <div class="form-group">
-                <div class="form-item">
-            {{ form.ciudad.label_tag }} {{ form.ciudad }} 
-            </div>
-                <div class="form-item">
-            {{ form.cumpleaños.label_tag }} {{ form.cumpleaños }}
-            </div>
-        </fieldset>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <div class="form-item">
+                        {{ form.ciudad.label_tag }} {{ form.ciudad }} 
+                    </div>
+                    <div class="form-item">
+                        {{ form.cumpleaños.label_tag }} {{ form.cumpleaños }}
+                    </div>
+                </div>
+            </fieldset>
 
-        <button type="submit">Enviar</button>
-    </form>
-    <a href="{% url "clienteListar" %}">Atras</a>
+            <button type="submit" class="btn-secondary btn">Enviar</button>
+        </form>
+        <div class="volver">
+            <a href="{% url "clienteListar" %}" class="btn-danger btn">Atras</a>
+        </div>
     </div>
 
 {% endblock main %}

@@ -7,11 +7,14 @@
 
 <!-- Main Content -->
 {% block main %}
-    <h2>Update Cliente</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save changes</button>
-    </form>
-    <a href="{% url 'clienteListar' %}">Cancel</a>
+    <div class="main_div">
+        <h2>Actualizar Cliente</h2>
+        
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Guardar cambios</button>
+        </form>
+        <a href="{% url 'clienteListar' %}">Cancelar</a>
+    </div>
 {% endblock main %}
