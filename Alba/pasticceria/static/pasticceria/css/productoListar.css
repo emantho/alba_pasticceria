@@ -10,9 +10,10 @@ body {
 
 h2 {
     text-align: center;
+    margin-bottom: 20px;
 }
 
-.clientes-crear {
+.producto-crear {
     text-align: right;
     margin-bottom: 20px;
 }

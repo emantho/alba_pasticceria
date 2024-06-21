@@ -38,7 +38,7 @@
                     {% if user.is_authenticated %}
                         <form method="post" action="{% url 'logout' %}">
                             {% csrf_token %}
-                            <button type="submit">Logout</button>
+                            <button type="submit" class="navbarnav-list" >Logout</button>
                         </form>
                     {% else %}
                         <li class="nav-item">
@@ -59,7 +59,7 @@
         {% endfor %}
     </ul>
     {% endif %}
-        <div class="main-div">
+        {% comment %} <div class="main-div"> {% endcomment %}
         {% block main %}
         
         {% endblock main %}

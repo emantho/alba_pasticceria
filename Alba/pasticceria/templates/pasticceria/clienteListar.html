@@ -7,7 +7,7 @@
 
 <!-- Main Content -->
 {% block main %}
-    <div class="main_div">
+    <div class="clientes_div">
         <h2>Listado de Clientes</h2>
     
         {% if perms.pasticceria.add_cliente %}
@@ -22,7 +22,10 @@
                 {% for cliente in clientes %}
                 <li>
                     <div class="cliente">
-                        {{cliente.dni}} - {{ cliente.nombre }} {{ cliente.apellido }}
+                        <div class="cliente-item">
+                        <span class="dni">{{cliente.dni}}</span>
+                        <span class="nombre">{{ cliente.nombre }} {{ cliente.apellido }}</span>
+                        </div>
                     </div>
                     <div class="actualizar-borrar">
                         {% if perms.pasticceria.change_cliente %}
