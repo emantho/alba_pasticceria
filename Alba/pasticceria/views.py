@@ -7,6 +7,8 @@ from .models import Orden, OrdenItem, Producto, Cliente
 from . import forms
 from .forms import OrdenForm, OrdenItemForm, ProductosForm
 from django.contrib.auth.decorators import login_required
+from django.db.models import F, Sum, DecimalField, ExpressionWrapper
+from django.db.models.functions import Cast
 
 # Create your views here.
 def index(request):
@@ -98,23 +100,6 @@ class ProductoListView(ListView):
     template_name = "pasticceria/productoListar.html"
     ordering = ["codigo"]
 
-# def menu(request):
-#     productos = Producto.objects.all()
-#     return render(request, "pasticceria/menu.html", {"productos" : productos})
-
-# def cafe(request):
-#     cafeteria = {
-#         "cafes": [
-#             {"French Vanilla":3.00},
-#             {"Caramel Macchiato":3.75},
-#             {"Pumpkin Spice":3.50},
-#             {"Hazelnut":4.00},
-#             {"Mocha":4.50}
-#             ]
-#     }
-
-#     return render(request, "pasticceria/cafe.html", cafeteria)
-
 # ____ productos Alta ____
 class ProductoCreateView(CreateView):
     model = Producto
@@ -136,8 +121,8 @@ class ProductoDeleteView(DeleteView):
     success_url = reverse_lazy('productoListar')
 
 
-## ------- ORDEN ---------------------------------------------------------------  
-# ____ orden crear ____  
+## ------- ORDEN ---------------------------------------------------------------
+# ____ orden crear ____
 def crear_orden(request):
     if request.method == 'POST':
         orden_form = OrdenForm(request.POST)
@@ -149,11 +134,22 @@ def crear_orden(request):
 
     return render(request, 'pasticceria/crear_orden.html', {'orden_form': orden_form})
 
-# ____ orden cancelar ____  
-def ordenCancelar(request):
-    pass
 
-# ____ Añadir items a la orden ____ 
+# ____ orden cancelar ____
+def actualizar_total_cost(orden):
+    total = (
+        OrdenItem.objects.filter(orden=orden).aggregate(
+            total=Sum(
+                ExpressionWrapper(F("producto__precio") * F("cantidad"), output_field=DecimalField())
+            )
+        )["total"]
+        or 0.00
+    )
+    orden.total_cost = total
+    orden.save()
+
+
+# ____ Añadir items a la orden ____
 def anadir_orden_items(request, orden_id):
     orden = get_object_or_404(Orden, id=orden_id)
     if request.method == 'POST':
@@ -162,21 +158,24 @@ def anadir_orden_items(request, orden_id):
             orden_item = orden_item_form.save(commit=False)
             orden_item.orden = orden
             orden_item.save()
+            actualizar_total_cost(orden)
             return redirect('anadir_orden_items', orden_id=orden.id)  # Redirect to the same page to add more items
     else:
         orden_item_form = OrdenItemForm()
 
     orden_items = OrdenItem.objects.filter(orden=orden)
     valoresTotales = [item.total for item in orden_items]
+    total_cost = sum(valoresTotales)
 
     return render(request, 'pasticceria/anadir_orden_items.html', {
         'orden_item_form': orden_item_form,
         'orden': orden,
         'orden_items': orden_items,
-        'valoresTotales': valoresTotales
+        'valoresTotales': valoresTotales,
+        'total_cost' : orden.total_cost
     })
 
-# ____ Editar item en orden ____ 
+# ____ Editar item en orden ____
 def ordenItemEditar(request, orden_id, item_id):
     orden = get_object_or_404(Orden, id=orden_id)
     orden_item = get_object_or_404(OrdenItem, id=item_id, orden=orden)
@@ -184,6 +183,7 @@ def ordenItemEditar(request, orden_id, item_id):
         orden_item_form = OrdenItemForm(request.POST, instance=orden_item)
         if orden_item_form.is_valid():
             orden_item_form.save()
+            actualizar_total_cost(orden)
             return redirect('anadir_orden_items', orden_id=orden.id)
     else:
         orden_item_form = OrdenItemForm(instance=orden_item)
@@ -193,12 +193,13 @@ def ordenItemEditar(request, orden_id, item_id):
         'orden_item': orden_item
     })
 
-# ____ Borrar item de orden ____ 
+# ____ Borrar item de orden ____
 def ordenItemBorrar(request, orden_id, item_id):
     orden = get_object_or_404(Orden, id=orden_id)
     orden_item = get_object_or_404(OrdenItem, id=item_id, orden=orden)
     if request.method == 'POST':
         orden_item.delete()
+        actualizar_total_cost(orden)
         return redirect('anadir_orden_items', orden_id=orden.id)
     return render(request, 'pasticceria/ordenItemBorrar.html', {
         'orden_item': orden_item,
@@ -206,7 +207,7 @@ def ordenItemBorrar(request, orden_id, item_id):
     })
 
 
-## ------- LOGIN / LOGOUT---------------------------------------------------------------  
+## ------- LOGIN / LOGOUT---------------------------------------------------------------
 
 def home(request):
     return render(request, "pasticceria/index.html")

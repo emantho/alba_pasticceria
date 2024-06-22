@@ -78,6 +78,8 @@ class Orden(models.Model):
     vendedor = models.ForeignKey(Vendedor, on_delete=models.CASCADE, related_name='ordenes')
     productos = models.ManyToManyField(Producto, through='OrdenItem')
     fecha = models.DateField(auto_now_add=True)
+    # Valor total de la orden, es la suma de todos los totales de productos añadidos
+    total_cost = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     
     def __str__(self):
         return f"Orden {self.id} - Cliente: {self.cliente} - Vendedor: {self.vendedor}"
@@ -93,6 +95,3 @@ class OrdenItem(models.Model):
     @property
     def total(self):
         return self.producto.precio * self.cantidad
-    
-    def total_cost(self):
-        return sum(item.total for iten in self.ordeitem_set.all())
