@@ -93,3 +93,6 @@ class OrdenItem(models.Model):
     @property
     def total(self):
         return self.producto.precio * self.cantidad
+    
+    def total_cost(self):
+        return sum(item.total for iten in self.ordeitem_set.all())

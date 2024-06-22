@@ -78,38 +78,6 @@ class ProductosForm(forms.ModelForm):
         # añadir más validaciones según requiera
         return cleaned_data
 
-
-# class ProductosForm(forms.Form):
-#     codigoProducto = forms.IntegerField(label='Código', required=True)
-#     nombreProducto = forms.CharField(label='Nombre', required=True)
-#     descripcion = forms.CharField(label='Descripción', required=True)
-#     listaCategorias = [(1,"Cafeteria"),(2,"Postres"),(3,"Tortas"),(4,"Bebidas Calientes"),(5,"Bebidas Frias")]
-#     categorias = forms.CharField(label="Categorias", widget=forms.Select(choices=listaCategorias), required=True)
-#     precio = forms.IntegerField(label="Precio", required=True)
-#     existencias = forms.IntegerField(
-#         label="Existencias",
-#         required=True,
-#         initial=1,  # default value in 1
-#     )
-
-#     def clean_nombreProducto(self):
-#         if not self.cleaned_data["nombreProducto"].isalpha():
-#             raise ValidationError("Name can only contains letters")
-
-#         return self.cleaned_data["nombreProducto"]
-
-#     def clean_existencias(self):
-#         existencias = self.cleaned_data.get("existencias")
-#         if existencias <= 0:
-#             raise ValidationError("Cantidad no puede ser menor que cero (0)")
-#         return existencias
-
-#     def clean(self):
-#         cleaned_data = super().clean()
-#         # añadir más validaciones según requiera
-#         return cleaned_data
-
-
 class OrdenForm(forms.ModelForm):
     class Meta:
         model = Orden

@@ -7,11 +7,19 @@
 
 <!-- Main Content -->
 {% block main %}
-    <h2>Eliminar Producto</h2>
-    <p>¿Estás seguro que deseas eliminar el producto "{{ object.nombre }}"?</p>
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-danger">Eliminar</button>
-        <a href="{% url 'productoListar' %}" class="btn btn-secondary">Cancelar</a>
-    </form>
+    <div class="main_div">
+        
+        <h2>Eliminar Producto</h2>
+        <p>¿Estás seguro que deseas eliminar el producto: <span> {{ object.nombre }}</span>?</p>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="botones">
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+                <div class="cancelar">
+                    <a href="{% url 'productoListar' %}" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </div>
+        </form>
+    </div>
 {% endblock main %}

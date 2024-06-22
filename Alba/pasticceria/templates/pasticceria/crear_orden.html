@@ -7,7 +7,8 @@ n{% extends "pasticceria/base.html" %}
 
 {% block main %}
 
-    <div class="form" class="main_div">
+    <div class="main_div">
+
         <h2>Crear Orden</h2>
         <form method="post">
             {% csrf_token %} 
@@ -24,7 +25,12 @@ n{% extends "pasticceria/base.html" %}
                     </div>
                 </div>
             </fieldset>
-            <button type="submit">Crear Orden</button>
+            <div class="botones">
+                <button type="submit" class="btn btn-primary">Crear orden</button>
+                <div class="cancelar">
+                    <a href="{% url 'index' %}" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </div>
         </form>
     </div>
 

@@ -28,13 +28,13 @@
                     {{ orden_item_form.cantidad.error }}
                 </div>
             </div>
-            <button type="submit">Añadir Item</button>
+            <button type="submit" class="btn btn-secondary">Añadir Item</button>
         </fieldset>
     </form>
 
     <br>
     <div class="items-anadidos">
-        <h3>Items añadidos:</h3>
+        <h3>Items en Orden:</h3>
 
         <div class="item-anadidos-table">
             <table class="table">
@@ -52,25 +52,20 @@
                     <td>${{ item.producto.precio }}</td>
                     <td>${{ item.total }}</td>
                     <td>
-                        <a href="{% url 'ordenItemEditar' orden.id item.id %}">Editar</a>
-                        <a href="{% url 'ordenItemBorrar' orden.id item.id %}">Borrar</a>
+                        <div class="acciones">
+                            <a href="{% url 'ordenItemEditar' orden.id item.id %}"alt="Editar">📝</a>
+                            <a href="{% url 'ordenItemBorrar' orden.id item.id %}"alt="Borrar">❌</a>
+                        </div>
                     </td>
                 </tr>
                 {% endfor %}
-
-                <!-- <ul>
-                        {% for item in orden_items %}
-                        <li><span>{{ item.cantidad }} x {{ item.producto.nombre }}</span> <span class="precio">{{
-                                item.producto.precio }}</span></li>
-                        {% endfor %}
-                    </ul> -->
             </table>
         </div>
     </div>
 
     <div class="botones">
-        <a href="{% url 'index' %}">Inicio</a>
-        <a href="{% url 'crear_orden' %}">Iniciar nueva orden</a>
+        <a href="{% url 'index' %}" class="btn btn-danger">Cancelar</a>
+        <a href="{% url 'crear_orden' %}" class="btn btn-primary">Iniciar nueva orden</a>
     </div>
 </div>
 {% endblock main %}

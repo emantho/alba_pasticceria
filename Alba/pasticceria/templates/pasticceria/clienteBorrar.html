@@ -7,10 +7,19 @@
 
 <!-- Main Content -->
 {% block main %}
-    <h2>Are you sure you want to delete {{ cliente.nombre }} {{ cliente.apellido }}?</h2>
+<div class="main_div">
+
+    <h2>Eliminar Cliente</h2>
+    <p>¿Esta seguro de borrar a: <span>{{ cliente.nombre }} {{ cliente.apellido }}</span>?</p>
+    
     <form method="post">
         {% csrf_token %}
-        <button type="submit">Confirm</button>
-        <a href="{% url 'clienteListar' %}">Cancel</a>
+        <div class="botones">
+            <button type="submit" class="btn-secondary btn">Confirmar</button>
+            <div class="cancelar">
+                <a href="{% url 'clienteListar' %}" class="btn-danger btn">Cancel</a>
+            </div>
+        </div>
     </form>
+</div>
 {% endblock main %}
