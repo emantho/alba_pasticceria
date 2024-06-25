@@ -1,8 +1,29 @@
 /* Styles for index template */
-h1 {
+body {
+    font-family: Arial, sans-serif;
+}
+
+.main_div {
+    width: 80%;
+    margin: 0 auto;
+}
+
+h2 {
     background-color: rgb(248, 225, 196);
     padding: 25px;
     color: white;
-
     border-radius: 5px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.image {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+}
+
+img {
+
+    width:60%;
 }
