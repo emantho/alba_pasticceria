@@ -49,9 +49,10 @@ h2 {
     font-weight: 600;
 }
 
-.cliente .cliente-item:first-child .precio {
-    text-align: right;
-    flex-shrink: 0;
+.cliente .cliente-item:first-child .nombre {
+    font-weight: 600;
+    /* text-align: right; */
+    /* flex-shrink: 0; */
 }
 
 .descripcion {

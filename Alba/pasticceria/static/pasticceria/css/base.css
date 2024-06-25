@@ -7,6 +7,7 @@
     --clr-navButtonHover: #71dea7;
     --clr-red: #C03028;
     --type-normal: #A8A878;
+    --clr-black: #000000;
 }
 
 
@@ -289,6 +290,10 @@ iframe {
 .wsapp img {
     width: 100%;
 }
+
+.wsapp a {
+    color: var(--clr-black);
+}
 .grid-sociales {
     display: inline-flex;
     gap: 12px;
@@ -310,7 +315,7 @@ iframe {
 }
 
 .fa-brands {
-    color: var(--clr-grass);
+    color: var(--clr-black);
 }
 
 .fa-brands:hover {
@@ -355,6 +360,7 @@ iframe {
 }
 
 .footer-link {
+    color: var(--clr-black);
     -webkit-tap-highlight-color: transparent;
     font-size: 14px;
     font-weight: 400;
@@ -384,6 +390,7 @@ iframe {
 }
 
 .mailto {
+    color: var(--clr-black);
     margin: 1em;
     font-weight: 600;
 }

@@ -7,11 +7,19 @@
 
 {% block main %}
 
-    <h2>Login</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
-    </form>
+    <div class="main_div">
+    
+        <h2>Login</h2>
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <div class="form-item">
+                    {{ form.as_div }}
+                </div>
+            </div>
+            <button type="submit" class="btn-secondary btn">Login</button>
+        </form>
+    </div>
 
 {% endblock main %}
