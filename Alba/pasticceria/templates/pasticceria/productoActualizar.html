@@ -1,0 +1,50 @@
+{% extends "pasticceria/base.html" %} 
+{% load static %}
+{% block tittle %}Gestión de Productoss{% endblock tittle%} 
+{% block css %}
+<link rel="stylesheet" href="{% static "pasticceria/css/productoAlta.css" %}">
+{% endblock css %} 
+
+<!-- Main Content -->
+{% block main %}
+
+    <div class="main_div">
+    <h2>Formulario de alta de Productos</h2>
+    <p>Por favor complete el formulario con la información requerida</p>
+    <h2>{% if object.pk %}Editar{% else %}Crear{% endif %} Producto</h2>
+   
+    <form class="form" method="POST">
+        {% csrf_token %}
+
+        <fieldset>
+            <div class="form-group">
+                <div class="form-item">
+                    {{ form.codigo.label_tag }} {{ form.codigo }} {{ form.codigo.error }}
+                </div>
+                <div class="form-item">
+                    {{ form.nombre.label_tag }} {{ form.nombre }} {{ form.nombre.error }}
+                </div>
+                <div class="form-item">
+                    {{ form.descripcion.label_tag }} {{ form.descripcion }} {{ form.descripcion.error }}
+                </div>
+                <div class="form-item">
+                {{ form.categorias.label_tag }} {{ form.categorias }} {{ form.categorias.error }}
+                </div>
+        </fieldset>
+        <fieldset>
+            <div class="form-item">
+            {{ form.precio.label_tag }} {{ form.precio }} {{ form.precio.error }}
+            </div>
+            <div class="form-item">
+            {{ form.existencias.label_tag }} {{ form.existencias }} {{ form.existencias.error }}
+            </div>
+        </fieldset>
+
+        <button type="submit" class="btn-secondary btn">{% if object.pk %}Actualizar{% else %}Crear{% endif %}</button>
+    </form>
+    <div class="volver">
+        <a href="{% url "productoListar" %}" class="btn-danger btn">Cancelar</a>
+    </div>
+    </div>
+
+{% endblock main %}

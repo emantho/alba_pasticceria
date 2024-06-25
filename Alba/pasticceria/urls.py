@@ -19,7 +19,8 @@ urlpatterns = [
     
     path('productoAlta', views.ProductoCreateView.as_view(), name='productoAlta'),
     path('productoListar', views.ProductoListView.as_view(), name='productoListar'),
-    path('productoAlta/<int:pk>', views.ProductoUpdateView.as_view(), name='productoActualizar'),
+    # path('productoAlta/<int:pk>', views.ProductoUpdateView.as_view(), name='productoActualizar'),
+    path('productoActualizar/<int:pk>', views.ProductoUpdateView.as_view(), name='productoActualizar'),
     path('productoBorrar/<int:pk>', views.ProductoDeleteView.as_view(), name='productoBorrar'),
     
     path('restricted/', views.restricted, name='restricted'),

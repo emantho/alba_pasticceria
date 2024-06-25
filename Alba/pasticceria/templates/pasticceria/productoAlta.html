@@ -13,7 +13,7 @@
     <p>Por favor complete el formulario con la información requerida</p>
     <h2>{% if object.pk %}Editar{% else %}Crear{% endif %} Producto</h2>
    
-    <form class="form" method="POST" action=" {% url "productoAlta" %} ">
+    <form class="form" method="POST">
         {% csrf_token %}
 
         <fieldset>
