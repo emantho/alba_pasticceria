@@ -7,21 +7,18 @@
 
 {% block main %}
 <!-- Main Content -->
-<div class="main_div">
-  <div class="row">
-    <div class="col-md-12">
-      <!-- Add your main content here -->
-      {% if user.is_authenticated %}
-        <h2>Bienvenido(a) {{ user.username }} a ALBA Pasticceria</h2>
-      {% else %}
-        <h2>Bienvenido(a) Invitado a ALBA Pasticceria</h2>
-      {% endif %}
-
-      <!-- <p>Esta vista tendrá imagenes o videos de novedades de productos y eventos.</p> -->
-
-      <div class="image">
-        <img src="{% static "pasticceria/media/images/img-index.webp" %}" alt="pasteleria">
-      </div>
+  <div class="main_div">
+    <div class="bienvenida">
+        <!-- Add your main content here -->
+        {% if user.is_authenticated %}
+          <h2>Bienvenido(a) <span>{{ user.username.upper }}</span> a ALBA Pasticceria</h2>
+        {% else %}
+          <h2>Bienvenido(a) <span>Invitado</span> a ALBA Pasticceria</h2>
+        {% endif %}
     </div>
-</div>
+    <!-- <p>Esta vista tendrá imagenes o videos de novedades de productos y eventos.</p> -->
+    <div class="image">
+      <img src="{% static "pasticceria/media/images/img-index.webp" %}" alt="pasteleria">
+    </div>
+  </div>
 {% endblock main %}
