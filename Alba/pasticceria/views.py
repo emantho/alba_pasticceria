@@ -48,9 +48,9 @@ def clienteAlta(request):
             cliente.save()
             messages.success(request, "Cliente creado exitosamente")
             return redirect('clienteListar')
-        # IF NO correct
-        # else:            
-        #     messages.error(request, "Existe un error, revise los datos ingresados")
+        else:            
+            messages.error(request, "Existe un error, revise los datos ingresados")
+            
     return render(request, "pasticceria/clienteAlta.html", {'form':form})
 
 # Actualizar cliente
@@ -69,6 +69,9 @@ def clienteActualizar(request, pk):
             cliente.cumpleaños = form.cleaned_data['cumpleaños']
             cliente.save()
             return redirect('clienteListar')
+        else:            
+            messages.error(request, "Existe un error, revise los datos ingresados")
+
     else:
         initial_data = {
             'nombre': cliente.nombre,
