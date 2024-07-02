@@ -1,6 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from .models import Orden, OrdenItem, Producto
+from .models import Orden, OrdenItem, Producto, Cliente
 import datetime
 
 
@@ -26,6 +26,12 @@ class ClienteAltaForm(forms.Form):
             raise ValidationError("El apellido solo puede contener letras")            
 
         return self.cleaned_data["apellido"]
+    
+    def clean_dni(self):
+        dni = self.cleaned_data["dni"]
+        if Cliente.objects.filter(dni=dni).exists():
+            raise ValidationError("Ya existe un cliente con este DNI")
+        return dni
 
     def clean(self):
         cleaned_data = super().clean()
